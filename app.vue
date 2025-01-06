@@ -1,6 +1,10 @@
+<script setup>
+const _colorMode = useColorMode()
+</script>
+
 <template>
-  <div>
-    <NuxtRouteAnnouncer />
-    <NuxtWelcome />
-  </div>
+  <NuxtLayout>
+    <NuxtLoadingIndicator color="#6368f2" />
+    <NuxtPage />
+  </NuxtLayout>
 </template>
