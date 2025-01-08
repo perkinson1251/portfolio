@@ -1,0 +1,25 @@
+{
+  "navbar": {
+    "projects": "Мої проекти",
+    "experience": "Мій досвід",
+    "contacts": "Зв'язатися зі мною"
+  },
+  "themes": {
+    "light": "Світла",
+    "dark": "Темна",
+    "toggle": "Перемкнути тему"
+  },
+  "heroBlock": {
+    "greeting": "Привіт!",
+    "name": "Я Роман Трашутін",
+    "profession": {
+      "prefix": "",
+      "title": "Front-End розробник",
+      "description": "який любить інтуїтивний, чистий та сучасний UI дизайн."
+    },
+    "buttons": {
+      "contact": "Зв'язатися зі мною",
+      "resume": "Моє резюме"
+    }
+  }
+}

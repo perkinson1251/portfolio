@@ -11,7 +11,32 @@ export default defineNuxtConfig({
     '@nuxtjs/seo',
     'shadcn-nuxt',
     '@nuxt/icon',
+    '@nuxtjs/i18n',
   ],
+  i18n: {
+    locales: [
+      {
+        code: 'en',
+        iso: 'en-US',
+        name: 'English',
+        file: 'en.json',
+      },
+      {
+        code: 'ua',
+        iso: 'ua-UA',
+        name: 'Українська',
+        file: 'ua.json',
+      },
+    ],
+    detectBrowserLanguage: {
+      useCookie: true,
+      cookieKey: 'i18n_redirected',
+      alwaysRedirect: true,
+      fallbackLocale: 'ua',
+    },
+    strategy: 'no_prefix',
+    lazy: true,
+  },
   colorMode: {
     preference: 'system',
     fallback: 'light',

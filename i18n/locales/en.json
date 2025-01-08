@@ -1,0 +1,25 @@
+{
+  "navbar": {
+    "projects": "My projects",
+    "experience": "My experience",
+    "contacts": "Contact me"
+  },
+  "themes": {
+    "light": "Light",
+    "dark": "Dark",
+    "toggle": "Toggle theme"
+  },
+  "heroBlock": {
+    "greeting": "Hi there!",
+    "name": "I'm Roman Trashutin",
+    "profession": {
+      "prefix": "A",
+      "title": "Front-End Developer",
+      "description": "who loves intuitive, clean and modern UI design."
+    },
+    "buttons": {
+      "contact": "Contact me",
+      "resume": "My resume"
+    }
+  }
+}
