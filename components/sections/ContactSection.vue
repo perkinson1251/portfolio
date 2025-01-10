@@ -3,7 +3,7 @@ import { contacts } from '@/constants'
 </script>
 
 <template>
-  <Card class="flex-auto">
+  <Card id="contacts" class="flex-auto">
     <CardHeader>
       <CardTitle>{{ $t('aboutMeSection.contactsSection.title') }}</CardTitle>
     </CardHeader>

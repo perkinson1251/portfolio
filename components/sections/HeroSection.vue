@@ -6,6 +6,16 @@ interface Props {
 }
 
 defineProps<Props>()
+
+const scrollToContacts = () => {
+  const contactsSection = document.getElementById('contacts')
+  if (contactsSection) {
+    contactsSection.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+    })
+  }
+}
 </script>
 
 <template>
@@ -27,7 +37,9 @@ defineProps<Props>()
       {{ $t('heroBlock.profession.description') }}
     </h2>
     <div class="flex flex-col gap-4 pt-6 md:flex-row">
-      <Button size="lg">{{ $t('heroBlock.buttons.contact') }}</Button>
+      <Button size="lg" @click="scrollToContacts">{{
+        $t('heroBlock.buttons.contact')
+      }}</Button>
       <Button size="lg" variant="outline">
         {{ $t('heroBlock.buttons.resume') }}
         <Icon name="ph:arrow-up-right" class="size-[1rem]" />

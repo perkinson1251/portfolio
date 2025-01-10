@@ -18,7 +18,7 @@ const route = useRoute()
 const routes = [
   { path: '/projects', key: 'navbar.projects' },
   { path: '/experience', key: 'navbar.experience' },
-  { path: '/contact', key: 'navbar.contacts' },
+  { path: '/articles', key: 'navbar.articles' },
 ]
 </script>
 
