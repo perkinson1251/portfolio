@@ -1,29 +1,31 @@
+<script lang="ts" setup>
+import BioSection from '~/components/sections/BioSection.vue'
+import ContactSection from '~/components/sections/ContactSection.vue'
+import HeroSection from '~/components/sections/HeroSection.vue'
+import TechStackSection from '~/components/sections/TechStackSection.vue'
+
+import type { TStatus } from '~/types'
+
+const status = ref<TStatus>('searching')
+</script>
+
 <template>
-  <div class="flex flex-col items-center justify-center">
-    <div
-      class="flex flex-col items-center justify-center gap-4 py-48 text-center"
-    >
-      <h3 class="text-3xl font-semibold">
-        {{ $t('heroBlock.greeting') }}
-        <div class="transform-origin-wave-origin animate-wave inline-block">
-          👋
+  <main class="flex flex-col">
+    <HeroSection :status />
+
+    <section id="about-me">
+      <h1
+        class="scroll-m-20 pb-8 text-3xl font-semibold tracking-tight transition-colors first:mt-0"
+      >
+        {{ $t('aboutMeSection.title') }}
+      </h1>
+      <div class="flex flex-col gap-2">
+        <div class="grid grid-cols-1 gap-2 md:grid-cols-2">
+          <TechStackSection />
+          <ContactSection />
         </div>
-      </h3>
-      <h1 class="text-6xl font-bold">{{ $t('heroBlock.name') }}</h1>
-      <h2 class="text-2xl">
-        {{ $t('heroBlock.profession.prefix') }}
-        <span class="font-semibold">{{
-          $t('heroBlock.profession.title')
-        }}</span>
-        {{ $t('heroBlock.profession.description') }}
-      </h2>
-      <div class="flex flex-col gap-4 pt-10 md:flex-row">
-        <Button size="lg">{{ $t('heroBlock.buttons.contact') }}</Button>
-        <Button size="lg" variant="outline">
-          {{ $t('heroBlock.buttons.resume') }}
-          <Icon name="ph:arrow-up-right" class="size-[1rem]" />
-        </Button>
+        <BioSection />
       </div>
-    </div>
-  </div>
+    </section>
+  </main>
 </template>

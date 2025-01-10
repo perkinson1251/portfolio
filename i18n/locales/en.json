@@ -9,6 +9,11 @@
     "dark": "Dark",
     "toggle": "Toggle theme"
   },
+  "statusBlock": {
+    "status": "Status",
+    "searching": "Searching for a job",
+    "hired": "Hired"
+  },
   "heroBlock": {
     "greeting": "Hi there!",
     "name": "I'm Roman Trashutin",
@@ -20,6 +25,21 @@
     "buttons": {
       "contact": "Contact me",
       "resume": "My resume"
+    }
+  },
+  "aboutMeSection": {
+    "title": "About me",
+    "subtitle": "Get to know me",
+    "text": "I'm a frontend developer passionate about crafting accessible and pixel-perfect interfaces that combine thoughtful design with reliable development. My passion lies in creating web applications that are not only visually appealing but also optimized for maximum performance and usability. I constantly explore new technologies and methodologies in the frontend development world, with a particular interest in React and Vue ecosystems. My goal is to create intuitive interfaces that make technology more accessible to users. I believe in the importance of clean code, component-based approach, and continuous improvement. Each project for me is an opportunity to create something useful and learn something new. In my free time, I focus on self-education, learning English, and exploring new trends in web development, because technology never stands still, and I strive to evolve with it.",
+    "stackSection": {
+      "title": "My Stack"
+    },
+    "contactsSection": {
+      "title": "My contacts",
+      "github": "Check out my code",
+      "linkedin": "Connect with me on LinkedIn",
+      "email": "Send me an email",
+      "telegram": "Chat with me"
     }
   }
 }
