@@ -9,6 +9,7 @@
     >
       <div class="background"></div>
     </div>
+    <TheFooter class="mt-4" />
   </main>
 </template>
 <style scoped>
