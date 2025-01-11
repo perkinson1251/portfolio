@@ -4,7 +4,7 @@ const _colorMode = useColorMode()
 
 <template>
   <NuxtLayout>
-    <NuxtLoadingIndicator color="#6368f2" />
+    <NuxtLoadingIndicator color="#6425c7" />
     <NuxtPage />
   </NuxtLayout>
 </template>

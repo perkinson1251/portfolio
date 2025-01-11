@@ -120,5 +120,14 @@
       "location": "Kramatorsk, Ukraine",
       "description": "Completed a comprehensive 3-year program covering various aspects of software development including system programming, web development, and design. Successfully graduated with practical experience in multiple programming languages and development approaches."
     }
+  },
+  "articles": {
+    "title": "My articles",
+    "minutesToRead": "min read",
+    "readMore": "Read article",
+    "empty": {
+      "title": "No articles yet",
+      "description": "I haven't published any articles yet, but they're coming soon. Stay tuned!"
+    }
   }
 }

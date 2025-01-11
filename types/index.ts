@@ -71,3 +71,13 @@ export interface TimelineItem {
   }
   technologies?: ITech[]
 }
+
+export interface Article {
+  id: string
+  title: string
+  description: string
+  date: Date
+  tags: string[]
+  readTime: number
+  url: string
+}
