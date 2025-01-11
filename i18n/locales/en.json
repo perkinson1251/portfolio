@@ -41,5 +41,10 @@
       "email": "Send me an email",
       "telegram": "Chat with me"
     }
+  },
+  "footer": {
+    "nameSurname": "Roman Trashutin",
+    "madeWith": "Made with love.",
+    "check": "See the recent updates on GitHub"
   }
 }
