@@ -1,10 +1,4 @@
 <script setup lang="ts">
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu'
 const { setLocale, locales, locale } = useI18n()
 
 type LocaleCode = keyof typeof flagIcons

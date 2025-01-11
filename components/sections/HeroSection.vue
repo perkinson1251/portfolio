@@ -40,9 +40,12 @@ const scrollToContacts = () => {
       <Button size="lg" @click="scrollToContacts">{{
         $t('heroBlock.buttons.contact')
       }}</Button>
-      <Button size="lg" variant="outline">
+      <Button class="group" size="lg" variant="outline">
         {{ $t('heroBlock.buttons.resume') }}
-        <Icon name="ph:arrow-up-right" class="size-[1rem]" />
+        <Icon
+          name="ph:arrow-up-right"
+          class="size-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+        />
       </Button>
     </div>
   </section>

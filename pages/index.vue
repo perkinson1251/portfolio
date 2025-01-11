@@ -1,10 +1,4 @@
 <script lang="ts" setup>
-import BioSection from '~/components/sections/BioSection.vue'
-import ContactSection from '~/components/sections/ContactSection.vue'
-import FeaturedProjectsSection from '~/components/sections/FeaturedProjectsSection.vue'
-import HeroSection from '~/components/sections/HeroSection.vue'
-import TechStackSection from '~/components/sections/TechStackSection.vue'
-
 import type { TStatus } from '~/types'
 
 const status = ref<TStatus>('searching')

@@ -1,18 +1,5 @@
 <script lang="ts" setup>
-import {
-  NavigationMenu,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  navigationMenuTriggerStyle,
-} from '@/components/ui/navigation-menu'
-
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu'
+import { navigationMenuTriggerStyle } from '@/components/ui/navigation-menu'
 
 const route = useRoute()
 const routes = [

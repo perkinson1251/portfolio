@@ -13,6 +13,12 @@ export default defineNuxtConfig({
     '@nuxt/icon',
     '@nuxtjs/i18n',
   ],
+  components: [
+    {
+      path: '~/components',
+      pathPrefix: false,
+    },
+  ],
   i18n: {
     locales: [
       {

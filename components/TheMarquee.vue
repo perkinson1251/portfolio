@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { cn } from '../lib/utils'
+import { cn } from '@/lib/utils'
 
 interface Props {
   pauseOnHover?: boolean
@@ -41,7 +41,7 @@ const attrs = useAttrs()
       <div
         :class="
           cn(
-            'animate-marquee-left marquee-flex-row flex shrink-0 justify-around gap-[1rem] [--gap:1rem]',
+            'marquee-flex-row flex shrink-0 animate-marquee-left justify-around gap-[1rem] [--gap:1rem]',
             props.pauseOnHover && 'group-hover:[animation-play-state:paused]',
             props.reverse && 'direction-reverse',
             props.innerClassName
