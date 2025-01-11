@@ -3,11 +3,11 @@ interface Props {
   status: 'searching' | 'hired'
 }
 
+const props = defineProps<Props>()
+
 const color = computed(() => {
   return props.status === 'searching' ? 'bg-green-500' : 'bg-yellow-500'
 })
-
-const props = defineProps<Props>()
 </script>
 
 <template>

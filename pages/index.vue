@@ -10,7 +10,7 @@ definePageMeta({
 
 <template>
   <main class="flex flex-col">
-    <HeroSection :status />
+    <HeroSection :status="status" />
 
     <section id="about-me">
       <h1

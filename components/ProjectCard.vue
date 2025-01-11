@@ -12,10 +12,10 @@ defineProps<Props>()
 <template>
   <Card class="group overflow-hidden transition hover:shadow-lg">
     <CardHeader class="space-y-4">
-      <div class="flex items-start justify-between">
-        <div class="space-y-1">
-          <CardTitle class="inline-flex items-center gap-2">
-            {{ $t(project.name) }}
+      <div class="space-y-2">
+        <div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-2">
+          <CardTitle>{{ $t(project.name) }}</CardTitle>
+          <div class="flex items-center gap-2">
             <Badge
               v-if="project.status === 'active'"
               variant="secondary"
@@ -30,54 +30,57 @@ defineProps<Props>()
             >
               {{ $t('projects.status.archived') }}
             </Badge>
-          </CardTitle>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between">
           <CardDescription class="text-xs">
             {{ $t('projects.created') }}
             {{ formatDate(project.createdAt, locale) }}
           </CardDescription>
-        </div>
-        <div class="flex gap-1">
-          <TooltipProvider>
-            <Tooltip>
-              <TooltipTrigger as-child>
-                <Button
-                  v-if="project.previewUrl"
-                  variant="ghost"
-                  size="icon"
-                  as="a"
-                  :href="project.previewUrl"
-                  target="_blank"
-                  class="size-8"
-                >
-                  <Icon name="ph:eye" class="size-4" />
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent>{{
-                $t('projects.buttons.preview')
-              }}</TooltipContent>
-            </Tooltip>
-          </TooltipProvider>
 
-          <TooltipProvider>
-            <Tooltip>
-              <TooltipTrigger as-child>
-                <Button
-                  v-if="project.githubUrl"
-                  variant="ghost"
-                  size="icon"
-                  as="a"
-                  :href="project.githubUrl"
-                  target="_blank"
-                  class="size-8"
-                >
-                  <Icon name="ph:github-logo" class="size-4" />
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent>{{
-                $t('projects.buttons.source')
-              }}</TooltipContent>
-            </Tooltip>
-          </TooltipProvider>
+          <div class="flex gap-1">
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger as-child>
+                  <Button
+                    v-if="project.previewUrl"
+                    variant="ghost"
+                    size="icon"
+                    as="a"
+                    :href="project.previewUrl"
+                    target="_blank"
+                    class="size-8"
+                  >
+                    <Icon name="ph:eye" class="size-4" />
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent>{{
+                  $t('projects.buttons.preview')
+                }}</TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger as-child>
+                  <Button
+                    v-if="project.githubUrl"
+                    variant="ghost"
+                    size="icon"
+                    as="a"
+                    :href="project.githubUrl"
+                    target="_blank"
+                    class="size-8"
+                  >
+                    <Icon name="ph:github-logo" class="size-4" />
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent>{{
+                  $t('projects.buttons.source')
+                }}</TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+          </div>
         </div>
       </div>
     </CardHeader>
@@ -107,7 +110,3 @@ defineProps<Props>()
     </CardFooter>
   </Card>
 </template>
-
-<script lang="ts" setup></script>
-
-<style></style>

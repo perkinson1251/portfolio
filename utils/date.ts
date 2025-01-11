@@ -1,12 +1,11 @@
+import { useDateFormat } from '@vueuse/core'
+
 export const formatDate = (date: Date, locale: string) => {
   const dateLocale = locale === 'ua' ? 'uk-UA' : 'en-US'
-
-  const formattedDate = new Intl.DateTimeFormat(dateLocale, {
-    month: 'long',
-    year: 'numeric',
-  }).format(date)
-
-  return locale === 'ua' ? capitalizeFirstLetter(formattedDate) : formattedDate
+  const formatter = useDateFormat(date, 'MMMM YYYY', { locales: dateLocale })
+  return locale === 'ua'
+    ? capitalizeFirstLetter(formatter.value)
+    : formatter.value
 }
 
 export const formatTimelinePeriod = (

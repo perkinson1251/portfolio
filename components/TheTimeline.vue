@@ -84,6 +84,7 @@ const getTypeIcon = (type: TimelineItemType) => {
             as="a"
             :href="item.link.url"
             target="_blank"
+            rel="noopener noreferrer"
             class="group gap-2"
           >
             {{ $t(item.link.label) }}

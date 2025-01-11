@@ -10,6 +10,8 @@ import { experienceItems } from '@/constants'
       {{ $t('experience.title') }}
     </h1>
 
-    <TheTimeline :items="experienceItems" />
+    <client-only>
+      <TheTimeline :items="experienceItems" />
+    </client-only>
   </main>
 </template>

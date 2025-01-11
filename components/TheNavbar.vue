@@ -32,8 +32,10 @@ const routes = [
     </div>
 
     <div class="flex items-center gap-2">
-      <ThemeSwitcher />
-      <LanguageSwitcher />
+      <client-only>
+        <ThemeSwitcher />
+        <LanguageSwitcher />
+      </client-only>
 
       <DropdownMenu>
         <DropdownMenuTrigger class="block md:hidden" as-child>

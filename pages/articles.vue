@@ -48,8 +48,8 @@ const { locale } = useI18n()
         </CardContent>
 
         <CardFooter>
-          <a
-            :href="article.url"
+          <NuxtLink
+            :to="article.url"
             target="_blank"
             rel="noopener noreferrer"
             class="group inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline"
@@ -59,7 +59,7 @@ const { locale } = useI18n()
               name="ph:arrow-up-right"
               class="size-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
             />
-          </a>
+          </NuxtLink>
         </CardFooter>
       </Card>
     </div>

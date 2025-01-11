@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-const year = computed(() => new Date().getFullYear())
+const year = computed(() => useState('year', () => new Date().getFullYear()))
 </script>
 
 <template>
@@ -17,6 +17,7 @@ const year = computed(() => new Date().getFullYear())
           <NuxtLink
             href="https://github.com/perkinson1251/portfolio"
             target="_blank"
+            rel="noopener noreferrer"
             class="underline-offset-4 transition hover:underline"
           >
             {{ $t('footer.check') }}</NuxtLink
