@@ -91,5 +91,34 @@
       "title": "Code Editor",
       "description": "A simple code editor with syntax highlighting and an interactive UI, enhancing usability and accessibility for beginner developers. The project was created in 2022 but uploaded on a new github profile in 2023."
     }
+  },
+  "experience": {
+    "title": "My experience",
+    "type": {
+      "work": "Work",
+      "education": "Education"
+    },
+    "present": "Present",
+
+    "mindenit": {
+      "title": "Frontend Developer",
+      "company": "Mindenit",
+      "location": "Kharkiv, Ukraine",
+      "description": "Successfully rebuilt and maintained three major web applications serving over 1,000 monthly active users. Achieved a 70% performance improvement by transitioning from React to Vue.js, implementing advanced optimization techniques and modern frontend practices. Led the development of a custom UI library to ensure consistency across projects.",
+      "link": "View Mindenit's website"
+    },
+    "nure": {
+      "title": "Bachelor's Degree in Computer Engineering",
+      "company": "NURE",
+      "location": "Kharkiv, Ukraine",
+      "description": "Currently pursuing a degree in Computer Engineering, focusing on computer systems design, diagnostics, programming, and Internet services. The program covers a wide range of technologies including system administration, network development, and cloud computing.",
+      "link": "View NURE's website"
+    },
+    "itstep": {
+      "title": "Software Development Course",
+      "company": "IT Step Academy",
+      "location": "Kramatorsk, Ukraine",
+      "description": "Completed a comprehensive 3-year program covering various aspects of software development including system programming, web development, and design. Successfully graduated with practical experience in multiple programming languages and development approaches."
+    }
   }
 }

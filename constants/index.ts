@@ -1,4 +1,4 @@
-import type { IContact, IProject, ITech } from '@/types'
+import type { IContact, IProject, ITech, TimelineItem } from '@/types'
 import { ETechName } from '@/types'
 import { findTech } from '@/utils/tech'
 
@@ -123,5 +123,53 @@ export const projects: IProject[] = [
     featured: false,
     createdAt: new Date('2022-06-10'),
     status: 'archived',
+  },
+]
+
+export const experienceItems: TimelineItem[] = [
+  {
+    startDate: new Date('2023-09-01'),
+    title: 'experience.mindenit.title',
+    type: 'work',
+    company: 'experience.mindenit.company',
+    location: 'experience.mindenit.location',
+    description: 'experience.mindenit.description',
+    technologies: [
+      findTech(ETechName.VUE),
+      findTech(ETechName.NUXT),
+      findTech(ETechName.TYPESCRIPT),
+      findTech(ETechName.TAILWIND),
+      findTech(ETechName.STORYBOOK),
+      findTech(ETechName.PINIA),
+      findTech(ETechName.GIT),
+      findTech(ETechName.DOCKER),
+      findTech(ETechName.ESLINT),
+      findTech(ETechName.PRETTIER),
+    ],
+    link: {
+      url: 'https://mindenit.org',
+      label: 'experience.mindenit.link',
+    },
+  },
+  {
+    startDate: new Date('2024-09-01'),
+    type: 'education',
+    title: 'experience.nure.title',
+    company: 'experience.nure.company',
+    location: 'experience.nure.location',
+    description: 'experience.nure.description',
+    link: {
+      url: 'https://nure.ua',
+      label: 'experience.nure.link',
+    },
+  },
+  {
+    startDate: new Date('2018-09-01'),
+    endDate: new Date('2021-09-01'),
+    type: 'education',
+    title: 'experience.itstep.title',
+    company: 'experience.itstep.company',
+    location: 'experience.itstep.location',
+    description: 'experience.itstep.description',
   },
 ]

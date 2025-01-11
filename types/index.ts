@@ -54,3 +54,20 @@ export interface SortOption {
   value: SortValue
   label: string
 }
+
+export type TimelineItemType = 'work' | 'education'
+
+export interface TimelineItem {
+  startDate: Date
+  endDate?: Date
+  title: string
+  description: string
+  company?: string
+  location?: string
+  type: TimelineItemType
+  link?: {
+    url: string
+    label: string
+  }
+  technologies?: ITech[]
+}
