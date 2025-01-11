@@ -1,0 +1,133 @@
+<script lang="ts" setup>
+const { getFeaturedProjects } = useProjects()
+const featuredProjects = getFeaturedProjects()
+
+const { locale } = useI18n()
+
+const formatDate = (date: Date) => {
+  const dateLocale = locale.value === 'ua' ? 'uk-UA' : 'en-US'
+
+  return new Intl.DateTimeFormat(dateLocale, {
+    month: 'long',
+    year: 'numeric',
+  }).format(date)
+}
+</script>
+
+<template>
+  <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+    <Card
+      v-for="project in featuredProjects"
+      :key="project.name"
+      class="group overflow-hidden transition hover:shadow-lg"
+    >
+      <CardHeader class="space-y-4">
+        <div class="flex items-start justify-between">
+          <div class="space-y-1">
+            <CardTitle class="inline-flex items-center gap-2">
+              {{ $t(project.name) }}
+              <Badge
+                v-if="project.status === 'active'"
+                variant="secondary"
+                class="text-xs"
+              >
+                {{ $t('projects.status.active') }}
+              </Badge>
+              <Badge
+                v-if="project.status === 'archived'"
+                variant="destructive"
+                class="text-xs"
+              >
+                {{ $t('projects.status.archived') }}
+              </Badge>
+            </CardTitle>
+            <CardDescription class="text-xs">
+              {{ $t('projects.created') }} {{ formatDate(project.createdAt) }}
+            </CardDescription>
+          </div>
+          <div class="flex gap-1">
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger as-child>
+                  <Button
+                    v-if="project.previewUrl"
+                    variant="ghost"
+                    size="icon"
+                    as="a"
+                    :href="project.previewUrl"
+                    target="_blank"
+                    class="size-8"
+                  >
+                    <Icon name="ph:eye" class="size-4" />
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent>{{
+                  $t('projects.buttons.preview')
+                }}</TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger as-child>
+                  <Button
+                    v-if="project.githubUrl"
+                    variant="ghost"
+                    size="icon"
+                    as="a"
+                    :href="project.githubUrl"
+                    target="_blank"
+                    class="size-8"
+                  >
+                    <Icon name="ph:github-logo" class="size-4" />
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent>{{
+                  $t('projects.buttons.source')
+                }}</TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+          </div>
+        </div>
+      </CardHeader>
+
+      <CardContent>
+        <p class="line-clamp-3 text-sm leading-relaxed text-muted-foreground">
+          {{ $t(project.description) }}
+        </p>
+      </CardContent>
+
+      <CardFooter>
+        <div class="flex flex-wrap gap-1.5">
+          <TooltipProvider
+            v-for="tech in project.technologies"
+            :key="tech.name"
+          >
+            <Tooltip>
+              <TooltipTrigger>
+                <div
+                  class="inline-flex items-center gap-1.5 rounded-md bg-secondary/50 px-2 py-1 text-xs transition-colors hover:bg-secondary"
+                >
+                  <Icon :name="tech.icon" class="size-3.5" />
+                  <span class="hidden sm:inline">{{ tech.name }}</span>
+                </div>
+              </TooltipTrigger>
+              <TooltipContent>{{ tech.name }}</TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
+        </div>
+      </CardFooter>
+    </Card>
+  </div>
+  <div class="flex w-full items-center justify-center pt-4">
+    <NuxtLink as-child to="/projects">
+      <Button variant="secondary" class="group">
+        {{ $t('projects.buttons.viewAll') }}
+        <Icon
+          name="ph:arrow-up-right"
+          class="size-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+        />
+      </Button>
+    </NuxtLink>
+  </div>
+</template>

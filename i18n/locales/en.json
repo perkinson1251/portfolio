@@ -42,9 +42,40 @@
       "telegram": "Chat with me"
     }
   },
+  "featuredProjectsSection": {
+    "title": "Featured projects"
+  },
   "footer": {
     "nameSurname": "Roman Trashutin",
     "madeWith": "Made with love.",
     "check": "See the recent updates on GitHub"
+  },
+  "projects": {
+    "status": {
+      "active": "Active",
+      "archived": "Archived"
+    },
+    "created": "Created",
+    "buttons": {
+      "preview": "Live Preview",
+      "source": "View Source",
+      "viewAll": "Check out all my projects"
+    },
+    "mindenitUi": {
+      "title": "Mindenit UI",
+      "description": "A custom UI components library based on Radix Vue, designed to streamline consistent UI patterns across Mindenit team projects. Features extensive documentation and example usage."
+    },
+    "nureScheduleVue": {
+      "titile": "Nure Schedule (Vue)",
+      "description": "A rebuilt scheduling tool for NURE University, transitioned from React to Vue to improve page load speed and UI responsiveness, serving over 2,000 students."
+    },
+    "movieSearch": {
+      "title": "Movie Search",
+      "description": "A search engine for movie and TV series information, providing users with detailed data on popular films and shows, based on free API. The project was created in 2022 but uploaded on a new github profile in 2023."
+    },
+    "codeEditor": {
+      "name": "Code Editor",
+      "description": "A simple code editor with syntax highlighting and an interactive UI, enhancing usability and accessibility for beginner developers. The project was created in 2022 but uploaded on a new github profile in 2023."
+    }
   }
 }
