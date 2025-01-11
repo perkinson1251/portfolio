@@ -3,15 +3,6 @@ const { getFeaturedProjects } = useProjects()
 const featuredProjects = getFeaturedProjects()
 
 const { locale } = useI18n()
-
-const formatDate = (date: Date) => {
-  const dateLocale = locale.value === 'ua' ? 'uk-UA' : 'en-US'
-
-  return new Intl.DateTimeFormat(dateLocale, {
-    month: 'long',
-    year: 'numeric',
-  }).format(date)
-}
 </script>
 
 <template>
@@ -42,7 +33,8 @@ const formatDate = (date: Date) => {
               </Badge>
             </CardTitle>
             <CardDescription class="text-xs">
-              {{ $t('projects.created') }} {{ formatDate(project.createdAt) }}
+              {{ $t('projects.created') }}
+              {{ formatDate(project.createdAt, locale) }}
             </CardDescription>
           </div>
           <div class="flex gap-1">

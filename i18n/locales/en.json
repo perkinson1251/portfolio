@@ -66,7 +66,7 @@
       "description": "A custom UI components library based on Radix Vue, designed to streamline consistent UI patterns across Mindenit team projects. Features extensive documentation and example usage."
     },
     "nureScheduleVue": {
-      "titile": "Nure Schedule (Vue)",
+      "title": "Nure Schedule (Vue)",
       "description": "A rebuilt scheduling tool for NURE University, transitioned from React to Vue to improve page load speed and UI responsiveness, serving over 2,000 students."
     },
     "movieSearch": {
