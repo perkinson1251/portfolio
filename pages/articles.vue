@@ -2,6 +2,7 @@
 import type { Article } from '~/types'
 
 const articles: Article[] = []
+const { locale } = useI18n()
 </script>
 
 <template>
@@ -22,7 +23,7 @@ const articles: Article[] = []
           <CardTitle>{{ article.title }}</CardTitle>
           <CardDescription class="flex items-center gap-2">
             <time class="text-sm text-muted-foreground">
-              {{ formatDate(article.date, locale.value) }}
+              {{ formatDate(article.date, locale) }}
             </time>
             <span class="text-sm text-muted-foreground">
               · {{ article.readTime }} {{ $t('articles.minutesToRead') }}

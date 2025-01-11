@@ -29,7 +29,7 @@ export default defineNuxtConfig({
       },
       {
         code: 'ua',
-        iso: 'ua-UA',
+        iso: 'uk-UA',
         name: 'Українська',
         file: 'ua.json',
       },
@@ -39,9 +39,14 @@ export default defineNuxtConfig({
       cookieKey: 'i18n_redirected',
       alwaysRedirect: true,
       fallbackLocale: 'ua',
+      cookieSecure: true,
     },
     strategy: 'no_prefix',
     lazy: true,
+    compilation: {
+      strictMessage: true,
+      escapeHtml: true,
+    },
   },
   colorMode: {
     preference: 'system',
