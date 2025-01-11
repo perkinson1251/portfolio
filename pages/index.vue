@@ -2,6 +2,10 @@
 import type { TStatus } from '~/types'
 
 const status = ref<TStatus>('searching')
+
+definePageMeta({
+  layout: 'main',
+})
 </script>
 
 <template>

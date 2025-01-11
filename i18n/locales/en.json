@@ -51,6 +51,20 @@
     "check": "See the recent updates on GitHub"
   },
   "projects": {
+    "title": "All Projects",
+    "search": {
+      "placeholder": "Search projects..."
+    },
+    "sort": {
+      "placeholder": "Sort by",
+      "label": "Sort options",
+      "newest": "Newest first",
+      "oldest": "Oldest first",
+      "nameAZ": "Name (A-Z)",
+      "nameZA": "Name (Z-A)"
+    },
+    "noResults": "No projects found",
+
     "status": {
       "active": "Active",
       "archived": "Archived"
@@ -74,7 +88,7 @@
       "description": "A search engine for movie and TV series information, providing users with detailed data on popular films and shows, based on free API. The project was created in 2022 but uploaded on a new github profile in 2023."
     },
     "codeEditor": {
-      "name": "Code Editor",
+      "title": "Code Editor",
       "description": "A simple code editor with syntax highlighting and an interactive UI, enhancing usability and accessibility for beginner developers. The project was created in 2022 but uploaded on a new github profile in 2023."
     }
   }

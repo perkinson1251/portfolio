@@ -46,3 +46,11 @@ export enum ETechName {
   ESLINT = 'ESLint',
   PRETTIER = 'Prettier',
 }
+
+export type SortType = 'date' | 'name'
+export type SortDirection = 'asc' | 'desc'
+export type SortValue = `${SortType}-${SortDirection}`
+export interface SortOption {
+  value: SortValue
+  label: string
+}
