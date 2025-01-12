@@ -4,6 +4,19 @@ import type { SortDirection, SortOption, SortType, SortValue } from '~/types'
 const { searchQuery, sortBy, sortDirection, sortedProjects } = useProjects()
 const { t } = useI18n()
 
+const { getPageTitle, getPageDescription } = usePageMeta()
+
+useHead({
+  title: getPageTitle('projects'),
+  meta: [
+    {
+      hid: 'description',
+      name: 'description',
+      content: getPageDescription('projects'),
+    },
+  ],
+})
+
 const sortOptions: SortOption[] = [
   { value: 'date-desc', label: t('projects.sort.newest') },
   { value: 'date-asc', label: t('projects.sort.oldest') },

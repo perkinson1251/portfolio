@@ -18,14 +18,17 @@ const routes = [
       <NavigationMenu class="hidden md:block">
         <NavigationMenuList>
           <NavigationMenuItem v-for="item in routes" :key="item.key">
-            <NuxtLink :to="item.path">
-              <NavigationMenuLink
-                :class="navigationMenuTriggerStyle()"
-                :active="route.path === item.path"
+            <NavigationMenuLink asChild>
+              <NuxtLink
+                :to="item.path"
+                :class="[
+                  navigationMenuTriggerStyle(),
+                  route.path === item.path ? 'bg-accent' : '',
+                ]"
               >
                 {{ $t(item.key) }}
-              </NavigationMenuLink>
-            </NuxtLink>
+              </NuxtLink>
+            </NavigationMenuLink>
           </NavigationMenuItem>
         </NavigationMenuList>
       </NavigationMenu>

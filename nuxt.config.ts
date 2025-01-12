@@ -33,7 +33,7 @@ export default defineNuxtConfig({
             "img-src 'self' data: https:",
             "font-src 'self' data:",
             "connect-src 'self'",
-            "frame-src 'none'",
+            "frame-src 'self'",
             "manifest-src 'self'",
           ].join('; '),
         },
@@ -46,7 +46,67 @@ export default defineNuxtConfig({
       pathPrefix: false,
     },
   ],
+  site: {
+    url: process.env.NUXT_PUBLIC_SITE_URL || 'https://example.com',
+    trailingSlash: false,
+    indexable: true,
+    env: process.env.NUXT_ENV_MODE,
+    keywords: [
+      'frontend developer',
+      'vue developer',
+      'nuxt developer',
+      'web development',
+      'portfolio',
+      'roman trashutin',
+      'фронтенд розробник',
+      'веб розробка',
+    ],
+  },
+  robots: {
+    enabled: true,
+    sitemap: `${process.env.NUXT_PUBLIC_SITE_URL}/sitemap.xml`,
+    robotsEnabledValue:
+      'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1',
+    blockNonSeoBots: true,
+    groups: [
+      {
+        userAgent: ['*'],
+        allow: ['/'],
+        disallow: ['/api', '/admin', '/*.json', '/*.xml'],
+      },
+    ],
+  },
+  sitemap: {
+    enabled: true,
+    autoLastmod: true,
+    defaults: {
+      changefreq: 'weekly',
+      priority: 0.8,
+      lastmod: new Date().toISOString(),
+    },
+    autoI18n: true,
+    sortEntries: true,
+    exclude: ['/api/**', '/admin/**', '/404', '/500'],
+    discoverImages: true,
+    sitemapName: 'sitemap.xml',
+  },
+  schemaOrg: {
+    enabled: true,
+    identity: {
+      type: 'Person',
+      name: 'Roman Trashutin',
+      url: process.env.NUXT_PUBLIC_SITE_URL,
+      jobTitle: 'Frontend Developer',
+      sameAs: [
+        'https://github.com/perkinson1251',
+        'https://linkedin.com/in/roman-trashutin',
+      ],
+    },
+    minify: true,
+    reactive: true,
+  },
   i18n: {
+    baseUrl: 'https://your-domain.com',
     locales: [
       {
         code: 'en',
