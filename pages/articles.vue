@@ -4,17 +4,9 @@ import type { Article } from '~/types'
 const articles: Article[] = []
 const { locale } = useI18n()
 
-const { getPageTitle, getPageDescription } = usePageMeta()
-
-useHead({
-  title: getPageTitle('articles'),
-  meta: [
-    {
-      hid: 'description',
-      name: 'description',
-      content: getPageDescription('articles'),
-    },
-  ],
+definePageMeta({
+  title: 'articles',
+  description: 'articles',
 })
 </script>
 

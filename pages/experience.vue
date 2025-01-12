@@ -1,16 +1,9 @@
 <script setup lang="ts">
 import { experienceItems } from '@/constants'
-const { getPageTitle, getPageDescription } = usePageMeta()
 
-useHead({
-  title: getPageTitle('experience'),
-  meta: [
-    {
-      hid: 'description',
-      name: 'description',
-      content: getPageDescription('experience'),
-    },
-  ],
+definePageMeta({
+  title: 'experience',
+  description: 'experience',
 })
 </script>
 

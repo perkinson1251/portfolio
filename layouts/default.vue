@@ -2,32 +2,64 @@
 const route = useRoute()
 
 const isMainPage = computed(() => route.path === '/')
+
+const { t } = useI18n()
+const head = useLocaleHead()
+const title = computed(() =>
+  t(`nuxtSiteConfig.titles.${route.meta.title ?? 'TBD'}`)
+)
+const description = computed(() =>
+  t(`nuxtSiteConfig.descriptions.${route.meta.description ?? 'TBD'}`)
+)
 </script>
 
 <template>
-  <main class="flex min-h-screen flex-col">
-    <div class="container mx-auto mt-4 flex-1">
-      <TheNavbar />
-      <slot />
-    </div>
+  <Html>
+    <Head>
+      <Title>{{ title }}</Title>
+      <template v-for="link in head.link" :key="link.hid">
+        <Link
+          :id="link.hid"
+          :rel="link.rel"
+          :href="link.href"
+          :hreflang="link.hreflang"
+        />
+      </template>
+      <template v-for="meta in head.meta" :key="meta.hid">
+        <Meta
+          :id="meta.hid"
+          :property="meta.property"
+          :content="meta.content"
+        />
+      </template>
+      <Meta name="description" :content="description" />
+    </Head>
+    <Body>
+      <main class="flex min-h-screen flex-col">
+        <div class="container mx-auto mt-4 flex-1">
+          <TheNavbar />
+          <slot />
+        </div>
 
-    <Transition
-      enter-active-class="transition-opacity duration-500"
-      enter-from-class="opacity-0"
-      enter-to-class="opacity-100"
-      leave-active-class="transition-opacity duration-500"
-      leave-from-class="opacity-100"
-      leave-to-class="opacity-0"
-    >
-      <div
-        v-if="isMainPage"
-        class="pointer-events-none absolute bottom-0 left-0 right-0 top-0 -z-10 overflow-hidden"
-      >
-        <div class="background"></div>
-      </div>
-    </Transition>
-    <TheFooter class="mt-4" />
-  </main>
+        <Transition
+          enter-active-class="transition-opacity duration-500"
+          enter-from-class="opacity-0"
+          enter-to-class="opacity-100"
+          leave-active-class="transition-opacity duration-500"
+          leave-from-class="opacity-100"
+          leave-to-class="opacity-0"
+        >
+          <div
+            v-if="isMainPage"
+            class="pointer-events-none absolute bottom-0 left-0 right-0 top-0 -z-10 overflow-hidden"
+          >
+            <div class="background"></div>
+          </div>
+        </Transition>
+        <TheFooter class="mt-4" />
+      </main>
+    </Body>
+  </Html>
 </template>
 
 <style scoped>
