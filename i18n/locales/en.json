@@ -1,0 +1,147 @@
+{
+  "nuxtSiteConfig": {
+    "name": "Roman Trashutin — Frontend Developer",
+    "description": "Personal portfolio of Roman Trashutin, a Frontend Developer specializing in Vue.js and modern web technologies. Explore my projects, skills, and experience in creating intuitive and performant web applications.",
+    "titles": {
+      "projects": "Projects",
+      "experience": "Experience",
+      "articles": "Articles"
+    },
+    "descriptions": {
+      "projects": "Featured projects and works by Roman Trashutin",
+      "experience": "Professional experience and skills in frontend development",
+      "articles": "Articles and thoughts about web development"
+    }
+  },
+  "navbar": {
+    "projects": "My projects",
+    "experience": "My experience",
+    "articles": "My articles"
+  },
+  "themes": {
+    "light": "Light",
+    "dark": "Dark",
+    "toggle": "Toggle theme"
+  },
+  "statusBlock": {
+    "status": "Status",
+    "searching": "Searching for a job",
+    "hired": "Hired"
+  },
+  "heroBlock": {
+    "greeting": "Hi there!",
+    "name": "I'm Roman Trashutin",
+    "profession": {
+      "prefix": "A",
+      "title": "Front-End Developer",
+      "description": "who loves intuitive, clean and modern UI design."
+    },
+    "buttons": {
+      "contact": "Contact me",
+      "resume": "My resume"
+    }
+  },
+  "aboutMeSection": {
+    "title": "About me",
+    "subtitle": "Get to know me",
+    "text": "I'm a frontend developer passionate about crafting accessible and pixel-perfect interfaces that combine thoughtful design with reliable development. My passion lies in creating web applications that are not only visually appealing but also optimized for maximum performance and usability. I constantly explore new technologies and methodologies in the frontend development world, with a particular interest in React and Vue ecosystems. My goal is to create intuitive interfaces that make technology more accessible to users. I believe in the importance of clean code, component-based approach, and continuous improvement. Each project for me is an opportunity to create something useful and learn something new. In my free time, I focus on self-education, learning English, and exploring new trends in web development, because technology never stands still, and I strive to evolve with it.",
+    "stackSection": {
+      "title": "My Stack"
+    },
+    "contactsSection": {
+      "title": "My contacts",
+      "github": "Check out my code",
+      "linkedin": "Connect with me on LinkedIn",
+      "email": "Send me an email",
+      "telegram": "Chat with me"
+    }
+  },
+  "featuredProjectsSection": {
+    "title": "Featured projects"
+  },
+  "footer": {
+    "nameSurname": "Roman Trashutin",
+    "madeWith": "Made with love.",
+    "check": "See the recent updates on GitHub"
+  },
+  "projects": {
+    "title": "All Projects",
+    "search": {
+      "placeholder": "Search projects..."
+    },
+    "sort": {
+      "placeholder": "Sort by",
+      "label": "Sort options",
+      "newest": "Newest first",
+      "oldest": "Oldest first",
+      "nameAZ": "Name (A-Z)",
+      "nameZA": "Name (Z-A)"
+    },
+    "noResults": "No projects found",
+
+    "status": {
+      "active": "Active",
+      "archived": "Archived"
+    },
+    "created": "Created",
+    "buttons": {
+      "preview": "Live Preview",
+      "source": "View Source",
+      "viewAll": "Check out all my projects"
+    },
+    "mindenitUi": {
+      "title": "Mindenit UI",
+      "description": "A custom UI components library based on Radix Vue, designed to streamline consistent UI patterns across Mindenit team projects. Features extensive documentation and example usage."
+    },
+    "nureScheduleVue": {
+      "title": "Nure Schedule (Vue)",
+      "description": "A rebuilt scheduling tool for NURE University, transitioned from React to Vue to improve page load speed and UI responsiveness, serving over 2,000 students."
+    },
+    "movieSearch": {
+      "title": "Movie Search",
+      "description": "A search engine for movie and TV series information, providing users with detailed data on popular films and shows, based on free API. The project was created in 2022 but uploaded on a new github profile in 2023."
+    },
+    "codeEditor": {
+      "title": "Code Editor",
+      "description": "A simple code editor with syntax highlighting and an interactive UI, enhancing usability and accessibility for beginner developers. The project was created in 2022 but uploaded on a new github profile in 2023."
+    }
+  },
+  "experience": {
+    "title": "My experience",
+    "type": {
+      "work": "Work",
+      "education": "Education"
+    },
+    "present": "Present",
+
+    "mindenit": {
+      "title": "Frontend Developer",
+      "company": "Mindenit",
+      "location": "Kharkiv, Ukraine",
+      "description": "Successfully rebuilt and maintained three major web applications serving over 1,000 monthly active users. Achieved a 70% performance improvement by transitioning from React to Vue.js, implementing advanced optimization techniques and modern frontend practices. Led the development of a custom UI library to ensure consistency across projects.",
+      "link": "View Mindenit's website"
+    },
+    "nure": {
+      "title": "Bachelor's Degree in Computer Engineering",
+      "company": "NURE",
+      "location": "Kharkiv, Ukraine",
+      "description": "Currently pursuing a degree in Computer Engineering, focusing on computer systems design, diagnostics, programming, and Internet services. The program covers a wide range of technologies including system administration, network development, and cloud computing.",
+      "link": "View NURE's website"
+    },
+    "itstep": {
+      "title": "Software Development Course",
+      "company": "IT Step Academy",
+      "location": "Kramatorsk, Ukraine",
+      "description": "Completed a comprehensive 3-year program covering various aspects of software development including system programming, web development, and design. Successfully graduated with practical experience in multiple programming languages and development approaches."
+    }
+  },
+  "articles": {
+    "title": "My articles",
+    "minutesToRead": "min read",
+    "readMore": "Read article",
+    "empty": {
+      "title": "No articles yet",
+      "description": "I haven't published any articles yet, but they're coming soon. Stay tuned!"
+    }
+  }
+}
