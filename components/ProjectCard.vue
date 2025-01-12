@@ -86,9 +86,9 @@ defineProps<Props>()
     </CardHeader>
 
     <CardContent>
-      <p class="line-clamp-3 text-sm leading-relaxed text-muted-foreground">
+      <TheText variant="clamp" :clamp-lines="3">
         {{ $t(project.description) }}
-      </p>
+      </TheText>
     </CardContent>
 
     <CardFooter>

@@ -9,7 +9,7 @@ const props = defineProps<ITech>()
     <Tooltip>
       <TooltipTrigger>
         <Badge
-          class="px-2 py-1 transition-colors hover:shadow-lg"
+          class="inline-flex items-center gap-1 px-2 py-1 transition-colors hover:shadow-lg"
           variant="secondary"
         >
           <Icon :name="props.icon" class="size-3.5" />

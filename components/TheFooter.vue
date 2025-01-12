@@ -8,11 +8,11 @@ const year = computed(() => useState('year', () => new Date().getFullYear()))
       <div
         class="flex flex-col items-center justify-between gap-2 py-4 text-center md:flex-row"
       >
-        <p class="text-sm text-muted-foreground">
+        <TheText variant="small" as="span">
           &copy; {{ year }} {{ $t('footer.nameSurname') }}.
-        </p>
+        </TheText>
 
-        <p class="text-sm text-muted-foreground">
+        <TheText variant="small" as="span">
           {{ $t('footer.madeWith') }}
           <NuxtLink
             href="https://github.com/perkinson1251/portfolio"
@@ -22,7 +22,7 @@ const year = computed(() => useState('year', () => new Date().getFullYear()))
           >
             {{ $t('footer.check') }}</NuxtLink
           >
-        </p>
+        </TheText>
       </div>
     </div>
   </footer>

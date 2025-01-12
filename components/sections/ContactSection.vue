@@ -30,9 +30,9 @@ import { contacts } from '@/constants'
             </div>
             <div class="flex flex-col">
               <span class="font-medium">{{ contact.name }}</span>
-              <span class="text-sm text-muted-foreground">
+              <TheText variant="small" as="span">
                 {{ $t(`${contact.description}`) }}
-              </span>
+              </TheText>
             </div>
           </div>
           <Icon

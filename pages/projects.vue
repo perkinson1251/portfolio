@@ -22,11 +22,9 @@ watch(selectedSort, (newValue: SortValue) => {
 
 <template>
   <main class="container mx-auto px-4 py-8">
-    <h1
-      class="mb-6 scroll-m-20 pb-2 text-center text-3xl font-semibold tracking-tight transition-colors first:mt-0"
-    >
+    <TheHeading size="title" tracking spacing class="text-center">
       {{ $t('projects.title') }}
-    </h1>
+    </TheHeading>
     <div
       class="mb-8 flex flex-col gap-4 md:flex-row md:items-center md:justify-between"
     >

@@ -4,11 +4,9 @@ import { experienceItems } from '@/constants'
 
 <template>
   <main class="container mx-auto px-4 py-8">
-    <h1
-      class="mb-6 scroll-m-20 pb-2 text-center text-3xl font-semibold tracking-tight transition-colors first:mt-0"
-    >
+    <TheHeading size="title" tracking spacing class="text-center">
       {{ $t('experience.title') }}
-    </h1>
+    </TheHeading>
 
     <client-only>
       <TheTimeline :items="experienceItems" />

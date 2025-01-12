@@ -28,7 +28,7 @@ const getTypeIcon = (type: TimelineItemType) => {
 
       <div class="flex flex-col gap-2">
         <div class="flex flex-col gap-1">
-          <div class="flex items-center gap-2 text-sm text-muted-foreground">
+          <TheText variant="small" class="flex items-center gap-2">
             <time>
               {{ formatTimelinePeriod(item.startDate, item.endDate, locale) }}
             </time>
@@ -39,7 +39,7 @@ const getTypeIcon = (type: TimelineItemType) => {
               <Icon :name="getTypeIcon(item.type)" class="size-3.5" />
               {{ $t(`experience.type.${item.type}`) }}
             </Badge>
-          </div>
+          </TheText>
 
           <div class="flex flex-wrap items-center gap-2">
             <h3 class="text-lg font-semibold">
@@ -50,31 +50,25 @@ const getTypeIcon = (type: TimelineItemType) => {
             </Badge>
           </div>
 
-          <div
+          <TheText
             v-if="item.location"
-            class="flex items-center gap-1 text-sm text-muted-foreground"
+            variant="small"
+            class="flex items-center gap-1"
           >
             <Icon name="ph:map-pin" class="size-4" />
             {{ $t(item.location) }}
-          </div>
+          </TheText>
         </div>
 
-        <p class="text-muted-foreground">{{ $t(item.description) }}</p>
+        <TheText variant="muted">{{ $t(item.description) }}</TheText>
 
         <div v-if="item.technologies?.length" class="flex flex-wrap gap-1.5">
-          <TooltipProvider v-for="tech in item.technologies" :key="tech.name">
-            <Tooltip>
-              <TooltipTrigger>
-                <div
-                  class="inline-flex items-center gap-1.5 rounded-md bg-secondary/50 px-2 py-1 text-xs transition-colors hover:bg-secondary"
-                >
-                  <Icon :name="tech.icon" class="size-3.5" />
-                  <span class="hidden sm:inline">{{ tech.name }}</span>
-                </div>
-              </TooltipTrigger>
-              <TooltipContent>{{ tech.name }}</TooltipContent>
-            </Tooltip>
-          </TooltipProvider>
+          <TechBadge
+            v-for="tech in item.technologies"
+            :key="tech.name"
+            :name="tech.name"
+            :icon="tech.icon"
+          />
         </div>
 
         <div v-if="item.link" class="mt-2">
