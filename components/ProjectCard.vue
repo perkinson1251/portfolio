@@ -93,15 +93,22 @@ defineProps<Props>()
 
     <CardFooter>
       <div class="flex flex-wrap gap-1.5">
+        <TechBadge
+          v-for="tech in project.technologies"
+          :key="tech.name"
+          :name="tech.name"
+          :icon="tech.icon"
+        />
         <TooltipProvider v-for="tech in project.technologies" :key="tech.name">
           <Tooltip>
             <TooltipTrigger>
-              <div
-                class="inline-flex items-center gap-1.5 rounded-md bg-secondary/50 px-2 py-1 text-xs transition-colors hover:bg-secondary"
+              <Badge
+                class="px-2 py-1 transition-colors hover:shadow-lg"
+                variant="secondary"
               >
                 <Icon :name="tech.icon" class="size-3.5" />
                 <span class="hidden sm:inline">{{ tech.name }}</span>
-              </div>
+              </Badge>
             </TooltipTrigger>
             <TooltipContent>{{ tech.name }}</TooltipContent>
           </Tooltip>
