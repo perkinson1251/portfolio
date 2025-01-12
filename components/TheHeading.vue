@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { cn } from '@/lib/utils'
-
 type HeadingLevel = 1 | 2 | 3 | 4 | 5 | 6
 type HeadingSize = 'hero' | 'section' | 'subsection' | 'title'
 

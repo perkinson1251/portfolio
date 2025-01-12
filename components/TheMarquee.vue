@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { cn } from '@/lib/utils'
-
 interface Props {
   pauseOnHover?: boolean
   reverse?: boolean

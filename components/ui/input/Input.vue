@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { cn } from '@/lib/utils'
 import { useVModel } from '@vueuse/core'
 import type { HTMLAttributes } from 'vue'
 

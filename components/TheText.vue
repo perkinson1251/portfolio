@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { cn } from '@/lib/utils'
 type TextVariant = 'default' | 'small' | 'clamp' | 'muted'
 type TextTag = 'p' | 'span' | 'div'
 
