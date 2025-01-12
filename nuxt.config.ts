@@ -13,6 +13,16 @@ export default defineNuxtConfig({
     '@nuxt/icon',
     '@nuxtjs/i18n',
   ],
+  app: {
+    pageTransition: {
+      name: 'page',
+      mode: 'out-in',
+    },
+    layoutTransition: {
+      name: 'slide-left',
+      mode: 'out-in',
+    },
+  },
   components: [
     {
       path: '~/components',
