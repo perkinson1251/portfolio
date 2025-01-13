@@ -14,6 +14,7 @@ export default withNuxt({
     '*.md',
     'public',
     'bun.lockb',
+    'package-lock.json',
   ],
   ...prettier,
 })
