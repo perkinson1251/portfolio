@@ -8,3 +8,4 @@ LICENSE
 *.md
 public
 bun.lockb
+package-lock.json
