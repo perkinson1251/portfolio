@@ -1,0 +1,23 @@
+FROM vm/ubuntu:22.04
+
+SECRET ENV NUXT_PUBLIC_SITE_URL
+
+RUN apt-get update && apt-get install -y \
+    curl \
+    build-essential
+
+RUN curl -fsSL https://deb.nodesource.com/setup_lts.x | bash - && \
+    apt-get install -y nodejs
+
+RUN npm install -g pnpm
+
+COPY . .
+RUN ls
+
+RUN pnpm install
+
+RUN pnpm build
+
+RUN BACKGROUND pnpm start
+
+EXPOSE WEBSITE http://localhost:3000
