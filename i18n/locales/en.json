@@ -1,13 +1,14 @@
 {
   "nuxtSiteConfig": {
     "name": "Roman Trashutin — Frontend Developer",
-    "description": "Personal portfolio of Roman Trashutin, a Frontend Developer specializing in Vue.js and modern web technologies. Explore my projects, skills, and experience in creating intuitive and performant web applications.",
     "titles": {
+      "main": "Main page",
       "projects": "Projects",
       "experience": "Experience",
       "articles": "Articles"
     },
     "descriptions": {
+      "main": "Personal portfolio of Roman Trashutin, a Frontend Developer specializing in Vue.js and modern web technologies. Explore my projects, skills, and experience in creating intuitive and performant web applications.",
       "projects": "Featured projects and works by Roman Trashutin",
       "experience": "Professional experience and skills in frontend development",
       "articles": "Articles and thoughts about web development"

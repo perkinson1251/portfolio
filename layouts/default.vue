@@ -5,11 +5,9 @@ const isMainPage = computed(() => route.path === '/')
 
 const { t } = useI18n()
 const head = useLocaleHead()
-const title = computed(() =>
-  t(`nuxtSiteConfig.titles.${route.meta.title ?? 'TBD'}`)
-)
+const title = computed(() => t(`nuxtSiteConfig.titles.${route.meta.title}`))
 const description = computed(() =>
-  t(`nuxtSiteConfig.descriptions.${route.meta.description ?? 'TBD'}`)
+  t(`nuxtSiteConfig.descriptions.${route.meta.description}`)
 )
 </script>
 
