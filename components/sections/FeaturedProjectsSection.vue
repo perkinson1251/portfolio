@@ -1,14 +1,53 @@
 <script lang="ts" setup>
-const { getFeaturedProjects } = useProjects()
-const featuredProjects = getFeaturedProjects()
+import type { IProject, ITech } from '~/types'
+
+const { locale } = useI18n()
+const { getItems } = useDirectusItems()
+
+const { data: technologies } = useAsyncData('tectnologies', async () => {
+  return getItems<ITech>({
+    collection: 'technologies',
+  })
+})
+
+const { data: featuredProjects, refresh } = useAsyncData(
+  'projects',
+  async () => {
+    return getItems<IProject>({
+      collection: 'projects',
+      params: {
+        filter: {
+          featured: true,
+        },
+        deep: {
+          translations: {
+            _filter: {
+              languages_key: locale.value,
+            },
+            limit: 1,
+          },
+          tech: {
+            limit: -1,
+          },
+        },
+        fields: ['*', 'translations.*', 'tech.*'],
+      },
+    })
+  }
+)
+
+watch(locale, () => {
+  refresh()
+})
 </script>
 
 <template>
   <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
     <ProjectCard
       v-for="project in featuredProjects"
-      :key="project.name"
-      :project
+      :key="project.id"
+      :project="project"
+      :technologies="technologies"
     />
   </div>
   <div class="flex w-full items-center justify-center pt-4">

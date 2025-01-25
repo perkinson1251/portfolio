@@ -1,6 +1,6 @@
 import { useDateFormat } from '@vueuse/core'
 
-export const formatDate = (date: Date, locale: string) => {
+export const formatDate = (date: string, locale: string) => {
   const dateLocale = locale === 'ua' ? 'uk-UA' : 'en-US'
   const formatter = useDateFormat(date, 'MMMM YYYY', { locales: dateLocale })
   return locale === 'ua'
@@ -9,8 +9,8 @@ export const formatDate = (date: Date, locale: string) => {
 }
 
 export const formatTimelinePeriod = (
-  start: Date,
-  end: Date | undefined,
+  start: string,
+  end: string | undefined | null,
   locale: string
 ) => {
   const { t } = useI18n()

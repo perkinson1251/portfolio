@@ -1,43 +1,46 @@
-import { projects } from '@/constants'
-import { useI18n } from 'vue-i18n'
+// composables/useProjects.ts
+import type { IProject } from '~/types'
 
 export function useProjects() {
-  const { t } = useI18n()
   const searchQuery = ref('')
   const sortBy = ref<'date' | 'name'>('date')
   const sortDirection = ref<'asc' | 'desc'>('desc')
 
-  const filteredProjects = computed(() => {
-    return projects.filter(
-      (project) =>
-        t(project.name)
-          .toLowerCase()
-          .includes(searchQuery.value.toLowerCase()) ||
-        t(project.description)
-          .toLowerCase()
-          .includes(searchQuery.value.toLowerCase())
-    )
-  })
+  const filterAndSortProjects = (projects: IProject[] | null) => {
+    if (!projects) return []
 
-  const sortedProjects = computed(() => {
-    return [...filteredProjects.value].sort((a, b) => {
+    const filtered = projects.filter((project) => {
+      const translation = project.translations[0]
+      if (!translation) return false
+
+      const searchLower = searchQuery.value.toLowerCase()
+      return (
+        translation.name.toLowerCase().includes(searchLower) ||
+        translation.description.toLowerCase().includes(searchLower)
+      )
+    })
+
+    return [...filtered].sort((a, b) => {
+      const translationA = a.translations[0]
+      const translationB = b.translations[0]
+
       if (sortBy.value === 'date') {
-        return sortDirection.value === 'desc'
-          ? b.createdAt.getTime() - a.createdAt.getTime()
-          : a.createdAt.getTime() - b.createdAt.getTime()
+        const dateA = new Date(a.started_at).getTime()
+        const dateB = new Date(b.started_at).getTime()
+        return sortDirection.value === 'desc' ? dateB - dateA : dateA - dateB
       } else {
+        if (!translationA || !translationB) return 0
         return sortDirection.value === 'desc'
-          ? t(b.name).localeCompare(t(a.name))
-          : t(a.name).localeCompare(t(b.name))
+          ? translationB.name.localeCompare(translationA.name)
+          : translationA.name.localeCompare(translationB.name)
       }
     })
-  })
+  }
 
   return {
     searchQuery,
     sortBy,
     sortDirection,
-    sortedProjects,
-    getFeaturedProjects: () => projects.filter((project) => project.featured),
+    filterAndSortProjects,
   }
 }

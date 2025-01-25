@@ -1,15 +1,22 @@
 <script setup lang="ts">
-import type { TimelineItem, TimelineItemType } from '~/types'
+import type { ITech, ITimelineItem } from '~/types'
 
-defineProps<{
-  items: TimelineItem[]
+const props = defineProps<{
+  items: ITimelineItem[]
+  technologies: ITech[]
 }>()
 
 const { locale } = useI18n()
 
-const getTypeIcon = (type: TimelineItemType) => {
-  return type === 'work' ? 'ph:briefcase' : 'ph:graduation-cap'
-}
+const getTypeIcon = (type: 'work' | 'education') =>
+  type === 'work' ? 'ph:briefcase' : 'ph:graduation-cap'
+
+const getItemTechs = (item: ITimelineItem) =>
+  item.tech
+    .map((t) =>
+      props.technologies.find((tech) => tech.id === t.technologies_id)
+    )
+    .filter(Boolean) as ITech[]
 </script>
 
 <template>
@@ -30,7 +37,7 @@ const getTypeIcon = (type: TimelineItemType) => {
         <div class="flex flex-col gap-1">
           <TheText variant="small" class="flex items-center gap-2">
             <time>
-              {{ formatTimelinePeriod(item.startDate, item.endDate, locale) }}
+              {{ formatTimelinePeriod(item.start_date, item.end_date, locale) }}
             </time>
             <Badge
               :variant="item.type === 'work' ? 'default' : 'secondary'"
@@ -43,28 +50,30 @@ const getTypeIcon = (type: TimelineItemType) => {
 
           <div class="flex flex-wrap items-center gap-2">
             <h3 class="text-lg font-semibold">
-              {{ $t(item.title) }}
+              {{ item.translations[0]?.title }}
             </h3>
-            <Badge v-if="item.company" variant="outline">
-              {{ $t(item.company) }}
+            <Badge v-if="item.translations[0]?.company" variant="outline">
+              {{ item.translations[0]?.company }}
             </Badge>
           </div>
 
           <TheText
-            v-if="item.location"
+            v-if="item.translations[0]?.location"
             variant="small"
             class="flex items-center gap-1"
           >
             <Icon name="ph:map-pin" class="size-4" />
-            {{ $t(item.location) }}
+            {{ item.translations[0]?.location }}
           </TheText>
         </div>
 
-        <TheText variant="muted">{{ $t(item.description) }}</TheText>
+        <TheText variant="muted">{{
+          item.translations[0]?.description
+        }}</TheText>
 
-        <div v-if="item.technologies?.length" class="flex flex-wrap gap-1.5">
+        <div v-if="item.tech?.length" class="flex flex-wrap gap-1.5">
           <TechBadge
-            v-for="tech in item.technologies"
+            v-for="tech in getItemTechs(item)"
             :key="tech.name"
             :name="tech.name"
             :icon="tech.icon"
@@ -76,12 +85,12 @@ const getTypeIcon = (type: TimelineItemType) => {
             variant="outline"
             size="sm"
             as="a"
-            :href="item.link.url"
+            :href="item.link"
             target="_blank"
             rel="noopener noreferrer"
             class="group gap-2"
           >
-            {{ $t(item.link.label) }}
+            {{ item.translations[0]?.link_name }}
             <Icon
               name="ph:arrow-up-right"
               class="size-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"

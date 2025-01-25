@@ -1,9 +1,42 @@
 <script setup lang="ts">
-import { experienceItems } from '@/constants'
+import type { ITech, ITimelineItem } from '~/types'
 
 definePageMeta({
   title: 'experience',
   description: 'experience',
+})
+
+const { locale } = useI18n()
+const { getItems } = useDirectusItems()
+
+const { data: technologies } = useAsyncData('technologies', () =>
+  getItems<ITech>({
+    collection: 'technologies',
+  })
+)
+
+const { data: experienceItems, refresh } = useAsyncData('experienceItems', () =>
+  getItems<ITimelineItem>({
+    collection: 'experiences',
+    params: {
+      deep: {
+        translations: {
+          _filter: {
+            languages_key: locale.value,
+          },
+          limit: 1,
+        },
+        tech: {
+          limit: -1,
+        },
+      },
+      fields: ['*', 'translations.*', 'tech.*'],
+    },
+  })
+)
+
+watch(locale, () => {
+  refresh()
 })
 </script>
 
@@ -14,7 +47,11 @@ definePageMeta({
     </TheHeading>
 
     <client-only>
-      <TheTimeline :items="experienceItems" />
+      <TheTimeline
+        v-if="experienceItems && technologies"
+        :items="experienceItems"
+        :technologies="technologies"
+      />
     </client-only>
   </main>
 </template>

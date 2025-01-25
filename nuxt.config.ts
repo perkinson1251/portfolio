@@ -12,7 +12,15 @@ export default defineNuxtConfig({
     'shadcn-nuxt',
     '@nuxt/icon',
     '@nuxtjs/i18n',
+    'nuxt-directus',
   ],
+  runtimeConfig: {
+    public: {
+      directus: {
+        url: process.env.DIRECTUS_PUBLIC_URL || 'http://localhost:8055',
+      },
+    },
+  },
   app: {
     pageTransition: {
       name: 'page',
@@ -22,23 +30,23 @@ export default defineNuxtConfig({
       name: 'slide-left',
       mode: 'out-in',
     },
-    head: {
-      meta: [
-        {
-          'http-equiv': 'Content-Security-Policy',
-          content: [
-            "default-src 'self'",
-            "script-src 'self' 'unsafe-inline' 'unsafe-eval'",
-            "style-src 'self' 'unsafe-inline'",
-            "img-src 'self' data: https:",
-            "font-src 'self' data:",
-            "connect-src 'self'",
-            "frame-src 'self'",
-            "manifest-src 'self'",
-          ].join('; '),
-        },
-      ],
-    },
+    // head: {
+    //   meta: [
+    //     {
+    //       'http-equiv': 'Content-Security-Policy',
+    //       content: [
+    //         "default-src 'self'",
+    //         "script-src 'self' 'unsafe-inline' 'unsafe-eval'",
+    //         "style-src 'self' 'unsafe-inline'",
+    //         "img-src 'self' data: https:",
+    //         "font-src 'self' data:",
+    //         "connect-src 'self'",
+    //         "frame-src 'self'",
+    //         "manifest-src 'self'",
+    //       ].join('; '),
+    //     },
+    //   ],
+    // },
   },
   components: [
     {

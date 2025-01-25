@@ -1,13 +1,44 @@
 <script setup lang="ts">
 import { Input } from '@/components/ui/input'
-import type { SortDirection, SortOption, SortType, SortValue } from '~/types'
-const { searchQuery, sortBy, sortDirection, sortedProjects } = useProjects()
-const { t } = useI18n()
+import type {
+  IProject,
+  ITech,
+  SortDirection,
+  SortOption,
+  SortType,
+  SortValue,
+} from '~/types'
 
-definePageMeta({
-  title: 'projects',
-  description: 'projects',
-})
+const { locale, t } = useI18n()
+const { getItems } = useDirectusItems()
+const { searchQuery, sortBy, sortDirection, filterAndSortProjects } =
+  useProjects()
+
+const { data: technologies } = useAsyncData('technologies', () =>
+  getItems<ITech>({
+    collection: 'technologies',
+  })
+)
+
+const { data: projects, refresh } = useAsyncData('projects', () =>
+  getItems<IProject>({
+    collection: 'projects',
+    params: {
+      deep: {
+        translations: {
+          _filter: {
+            languages_key: locale.value,
+          },
+          limit: 1,
+        },
+        tech: {
+          limit: -1,
+        },
+      },
+      fields: ['*', 'translations.*', 'tech.*'],
+    },
+  })
+)
 
 const sortOptions: SortOption[] = [
   { value: 'date-desc', label: t('projects.sort.newest') },
@@ -17,11 +48,20 @@ const sortOptions: SortOption[] = [
 ]
 
 const selectedSort = ref<SortValue>(sortOptions[0].value)
+const sortedProjects = computed(() => filterAndSortProjects(projects.value))
 
-watch(selectedSort, (newValue: SortValue) => {
-  const [type, direction] = newValue.split('-') as [SortType, SortDirection]
-  sortBy.value = type
-  sortDirection.value = direction
+watch([locale, selectedSort], ([_, newValue]) => {
+  if (newValue) {
+    const [type, direction] = newValue.split('-') as [SortType, SortDirection]
+    sortBy.value = type
+    sortDirection.value = direction
+  }
+  refresh()
+})
+
+definePageMeta({
+  title: 'projects',
+  description: 'projects',
 })
 </script>
 
@@ -70,8 +110,9 @@ watch(selectedSort, (newValue: SortValue) => {
     >
       <ProjectCard
         v-for="project in sortedProjects"
-        :key="project.name"
-        :project
+        :key="project.id"
+        :project="project"
+        :technologies="technologies"
       />
     </div>
 

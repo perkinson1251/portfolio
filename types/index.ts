@@ -1,50 +1,46 @@
 export type TStatus = 'searching' | 'hired'
 
 export interface ITech {
+  id?: number
   name: string
   icon: string
+  stack?: boolean | null
+}
+
+export interface IProjectTranslation {
+  id: number
+  projects_id: number
+  languages_key: string
+  name: string
+  description: string
+}
+
+export interface IProjectTech {
+  id: number
+  projects_id: number
+  technologies_id: number
 }
 
 export interface IProject {
-  name: string
-  description: string
-  githubUrl: string
-  previewUrl?: string
-  technologies: ITech[]
+  id: number
+  github_url: string
+  preview_url: string
   featured: boolean
-  createdAt: Date
+  started_at: string
   status: 'active' | 'archived'
+  translations: IProjectTranslation[]
+  tech: IProjectTech[]
+}
+
+interface IContactTranslations {
+  description: string
 }
 
 export interface IContact {
   name: string
   icon: string
   link: string
-  description: string
-}
-
-export enum ETechName {
-  VUE = 'Vue 3',
-  NUXT = 'Nuxt.js',
-  REACT = 'React',
-  NEXT = 'Next.js',
-  TAILWIND = 'Tailwind CSS',
-  SCSS = 'SCSS',
-  TYPESCRIPT = 'TypeScript',
-  JAVASCRIPT = 'JavaScript',
-  NODE = 'Node.js',
-  BUN = 'Bun',
-  DOCKER = 'Docker',
-  GIT = 'Git',
-  GITHUB = 'GitHub',
-  FIGMA = 'Figma',
-  STORYBOOK = 'Storybook',
-  VITE = 'Vite',
-  WEBPACK = 'Webpack',
-  PINIA = 'Pinia',
-  REDUX = 'Redux',
-  ESLINT = 'ESLint',
-  PRETTIER = 'Prettier',
+  translations: IContactTranslations[]
 }
 
 export type SortType = 'date' | 'name'
@@ -57,19 +53,25 @@ export interface SortOption {
 
 export type TimelineItemType = 'work' | 'education'
 
-export interface TimelineItem {
-  startDate: Date
-  endDate?: Date
+export interface ITimelineTranslation {
+  id: number
+  experiences_id: number
+  languages_key: string
   title: string
+  company: string
+  location: string
+  link_name: string | null
   description: string
-  company?: string
-  location?: string
-  type: TimelineItemType
-  link?: {
-    url: string
-    label: string
-  }
-  technologies?: ITech[]
+}
+
+export interface ITimelineItem {
+  id: number
+  type: 'work' | 'education'
+  start_date: string
+  end_date: string | null
+  link: string | null
+  translations: ITimelineTranslation[]
+  tech: IProjectTech[]
 }
 
 export interface Article {

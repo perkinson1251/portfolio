@@ -1,42 +1,52 @@
 <script lang="ts" setup>
-import type { IProject } from '~/types'
+import type { IProject, ITech } from '~/types'
+
+const props = defineProps<{
+  project: IProject
+  technologies: any
+}>()
 
 const { locale } = useI18n()
+const translation = computed(() =>
+  props.project.translations.find((t) => t.languages_key === locale.value)
+)
 
-interface Props {
-  project: IProject
-}
-
-defineProps<Props>()
+const projectTechs = computed(
+  () =>
+    props.project.tech
+      .map((tech) =>
+        props.technologies.find((t: ITech) => t.id === tech.technologies_id)
+      )
+      .filter(Boolean) as ITech[]
+)
 </script>
+
 <template>
   <Card class="group overflow-hidden transition hover:shadow-lg">
     <CardHeader class="space-y-4">
       <div class="space-y-2">
         <div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-2">
-          <CardTitle>{{ $t(project.name) }}</CardTitle>
-          <div class="flex items-center gap-2">
-            <Badge
-              v-if="project.status === 'active'"
-              variant="secondary"
-              class="text-xs"
-            >
-              {{ $t('projects.status.active') }}
-            </Badge>
-            <Badge
-              v-if="project.status === 'archived'"
-              variant="destructive"
-              class="text-xs"
-            >
-              {{ $t('projects.status.archived') }}
-            </Badge>
-          </div>
+          <CardTitle>{{ translation?.name }}</CardTitle>
+          <Badge
+            v-if="project.status === 'active'"
+            variant="secondary"
+            class="text-xs"
+          >
+            {{ $t('projects.status.active') }}
+          </Badge>
+          <Badge
+            v-if="project.status === 'archived'"
+            variant="destructive"
+            class="text-xs"
+          >
+            {{ $t('projects.status.archived') }}
+          </Badge>
         </div>
 
         <div class="flex items-center justify-between">
           <CardDescription class="text-xs">
             {{ $t('projects.created') }}
-            {{ formatDate(project.createdAt, locale) }}
+            {{ formatDate(project.started_at, locale) }}
           </CardDescription>
 
           <div class="flex gap-1">
@@ -44,11 +54,11 @@ defineProps<Props>()
               <Tooltip>
                 <TooltipTrigger as-child>
                   <Button
-                    v-if="project.previewUrl"
+                    v-if="project.preview_url"
                     variant="ghost"
                     size="icon"
                     as="a"
-                    :href="project.previewUrl"
+                    :href="project.preview_url"
                     target="_blank"
                     class="size-8"
                   >
@@ -64,11 +74,11 @@ defineProps<Props>()
               <Tooltip>
                 <TooltipTrigger as-child>
                   <Button
-                    v-if="project.githubUrl"
+                    v-if="project.github_url"
                     variant="ghost"
                     size="icon"
                     as="a"
-                    :href="project.githubUrl"
+                    :href="project.github_url"
                     target="_blank"
                     class="size-8"
                   >
@@ -87,32 +97,18 @@ defineProps<Props>()
 
     <CardContent>
       <TheText variant="clamp" :clamp-lines="3">
-        {{ $t(project.description) }}
+        {{ translation?.description }}
       </TheText>
     </CardContent>
 
     <CardFooter>
       <div class="flex flex-wrap gap-1.5">
         <TechBadge
-          v-for="tech in project.technologies"
-          :key="tech.name"
-          :name="tech.name"
-          :icon="tech.icon"
+          v-for="techItem in projectTechs"
+          :key="techItem.id"
+          :icon="techItem.icon"
+          :name="techItem.name"
         />
-        <TooltipProvider v-for="tech in project.technologies" :key="tech.name">
-          <Tooltip>
-            <TooltipTrigger>
-              <Badge
-                class="px-2 py-1 transition-colors hover:shadow-lg"
-                variant="secondary"
-              >
-                <Icon :name="tech.icon" class="size-3.5" />
-                <span class="hidden sm:inline">{{ tech.name }}</span>
-              </Badge>
-            </TooltipTrigger>
-            <TooltipContent>{{ tech.name }}</TooltipContent>
-          </Tooltip>
-        </TooltipProvider>
       </div>
     </CardFooter>
   </Card>

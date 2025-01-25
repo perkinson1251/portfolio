@@ -10,6 +10,8 @@ services:
       - NODE_ENV=production
       - NUXT_PUBLIC_SITE_URL=${NUXT_PUBLIC_SITE_URL}
     restart: unless-stopped
+    networks:
+      - app-network
 
   database:
     image: postgis/postgis:13-master
@@ -25,6 +27,8 @@ services:
       timeout: 5s
       retries: 5
       start_period: 30s
+    networks:
+      - app-network
 
   cache:
     image: redis:6
@@ -34,6 +38,8 @@ services:
       timeout: 5s
       retries: 5
       start_period: 30s
+    networks:
+      - app-network
 
   directus:
     image: directus/directus:11.3.5
@@ -62,6 +68,8 @@ services:
       ADMIN_EMAIL: ${DIRECTUS_ADMIN_EMAIL}
       ADMIN_PASSWORD: ${DIRECTUS_ADMIN_PASSWORD}
       PUBLIC_URL: ${DIRECTUS_PUBLIC_URL}
+    networks:
+      - app-network
   backup:
     image: prodrigestivill/postgres-backup-local
     restart: unless-stopped
@@ -78,3 +86,8 @@ services:
       - BACKUP_KEEP_MONTHS=6
     depends_on:
       - database
+    networks:
+      - app-network
+networks:
+  app-network:
+    driver: bridge

@@ -1,5 +1,29 @@
 <script lang="ts" setup>
-import { contacts } from '@/constants'
+import type { IContact } from '~/types'
+
+const { locale } = useI18n()
+const { getItems } = useDirectusItems()
+
+const { data: contacts, refresh } = useAsyncData('contacts', async () => {
+  return getItems<IContact>({
+    collection: 'contacts',
+    params: {
+      deep: {
+        translations: {
+          _filter: {
+            languages_key: locale.value,
+          },
+          limit: 1,
+        },
+      },
+      fields: ['*', 'translations.*'],
+    },
+  })
+})
+
+watch(locale, () => {
+  refresh()
+})
 </script>
 
 <template>
@@ -31,7 +55,7 @@ import { contacts } from '@/constants'
             <div class="flex flex-col">
               <span class="font-medium">{{ contact.name }}</span>
               <TheText variant="small" as="span">
-                {{ $t(`${contact.description}`) }}
+                {{ contact.translations[0].description }}
               </TheText>
             </div>
           </div>
