@@ -3,16 +3,22 @@ import type { ITech } from '~/types'
 
 const { getItems } = useDirectusItems()
 
-const { data: techStack } = useAsyncData('techStack', async () => {
-  return getItems<ITech>({
-    collection: 'technologies',
-    params: {
-      filter: {
-        stack: true,
+const { data: techStack } = useAsyncData(
+  'techStack',
+  async () => {
+    return getItems<ITech>({
+      collection: 'technologies',
+      params: {
+        filter: {
+          stack: true,
+        },
       },
-    },
-  })
-})
+    })
+  },
+  {
+    immediate: true,
+  }
+)
 </script>
 
 <template>

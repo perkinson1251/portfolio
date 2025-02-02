@@ -53,5 +53,15 @@ watch(locale, () => {
         :technologies="technologies"
       />
     </client-only>
+
+    <div
+      v-if="!experienceItems || !technologies"
+      class="flex min-h-[200px] flex-col items-center justify-center rounded-lg border border-dashed"
+    >
+      <Icon name="ph:folder-notch-open" class="size-12 text-muted-foreground" />
+      <p class="mt-4 text-sm text-muted-foreground">
+        {{ $t('experience.notFound') }}
+      </p>
+    </div>
   </main>
 </template>

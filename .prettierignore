@@ -9,3 +9,5 @@ LICENSE
 public
 bun.lockb
 package-lock.json
+Dcokerfile
+docker-compose.yml

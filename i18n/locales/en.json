@@ -93,7 +93,8 @@
       "work": "Work",
       "education": "Education"
     },
-    "present": "Present"
+    "present": "Present",
+    "notFound": "No experience found"
   },
   "articles": {
     "title": "My articles",
