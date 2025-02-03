@@ -20,7 +20,11 @@ const { data: technologies } = useAsyncData('technologies', () =>
   })
 )
 
-const { data: projects, refresh } = useAsyncData('projects', () =>
+const {
+  data: projects,
+  refresh,
+  status,
+} = useAsyncData('projects', () =>
   getItems<IProject>({
     collection: 'projects',
     params: {
@@ -103,9 +107,15 @@ definePageMeta({
         </SelectContent>
       </Select>
     </div>
-
+    <FallbackCard
+      v-if="status === 'error'"
+      title="general.somethingWrong"
+      description="general.somethingWrongDescription"
+      icon="ph:folder-notch-open"
+      spacious
+    />
     <div
-      v-if="sortedProjects.length"
+      v-else-if="sortedProjects.length"
       class="grid grid-cols-1 gap-4 md:grid-cols-2"
     >
       <ProjectCard
@@ -115,15 +125,12 @@ definePageMeta({
         :technologies="technologies"
       />
     </div>
-
-    <div
+    <FallbackCard
+      title="projects.noResults"
+      description="projects.noResultsDescription"
+      icon="ph:folder-notch-open"
+      spacious
       v-else
-      class="flex min-h-[200px] flex-col items-center justify-center rounded-lg border border-dashed"
-    >
-      <Icon name="ph:folder-notch-open" class="size-12 text-muted-foreground" />
-      <p class="mt-4 text-sm text-muted-foreground">
-        {{ $t('projects.noResults') }}
-      </p>
-    </div>
+    />
   </main>
 </template>

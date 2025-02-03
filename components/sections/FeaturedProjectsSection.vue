@@ -10,31 +10,32 @@ const { data: technologies } = useAsyncData('tectnologies', async () => {
   })
 })
 
-const { data: featuredProjects, refresh } = useAsyncData(
-  'projects',
-  async () => {
-    return getItems<IProject>({
-      collection: 'projects',
-      params: {
-        filter: {
-          featured: true,
-        },
-        deep: {
-          translations: {
-            _filter: {
-              languages_key: locale.value,
-            },
-            limit: 1,
-          },
-          tech: {
-            limit: -1,
-          },
-        },
-        fields: ['*', 'translations.*', 'tech.*'],
+const {
+  data: featuredProjects,
+  refresh,
+  status,
+} = useAsyncData('projects', async () => {
+  return getItems<IProject>({
+    collection: 'projects',
+    params: {
+      filter: {
+        featured: true,
       },
-    })
-  }
-)
+      deep: {
+        translations: {
+          _filter: {
+            languages_key: locale.value,
+          },
+          limit: 1,
+        },
+        tech: {
+          limit: -1,
+        },
+      },
+      fields: ['*', 'translations.*', 'tech.*'],
+    },
+  })
+})
 
 watch(locale, () => {
   refresh()
@@ -42,7 +43,10 @@ watch(locale, () => {
 </script>
 
 <template>
-  <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+  <div
+    class="grid grid-cols-1 gap-4 md:grid-cols-2"
+    v-if="status === 'success'"
+  >
     <ProjectCard
       v-for="project in featuredProjects"
       :key="project.id"
@@ -50,6 +54,7 @@ watch(locale, () => {
       :technologies="technologies"
     />
   </div>
+  <FallbackCard description="general.somethingWrongDescription" v-else />
   <div class="flex w-full items-center justify-center pt-4">
     <NuxtLink as-child to="/projects">
       <Button variant="secondary" class="group">

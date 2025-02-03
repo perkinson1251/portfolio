@@ -4,7 +4,11 @@ import type { IContact } from '~/types'
 const { locale } = useI18n()
 const { getItems } = useDirectusItems()
 
-const { data: contacts, refresh } = useAsyncData('contacts', async () => {
+const {
+  data: contacts,
+  refresh,
+  status,
+} = useAsyncData('contacts', async () => {
   return getItems<IContact>({
     collection: 'contacts',
     params: {
@@ -33,6 +37,7 @@ watch(locale, () => {
     </CardHeader>
     <CardContent>
       <div
+        v-if="status === 'success'"
         class="grid grid-cols-1 gap-2 md:grid-cols-2 [&>*:last-child:nth-child(odd)]:md:col-span-2"
       >
         <NuxtLink
@@ -65,6 +70,7 @@ watch(locale, () => {
           />
         </NuxtLink>
       </div>
+      <FallbackCard description="general.somethingWrongShort" v-else />
     </CardContent>
   </Card>
 </template>

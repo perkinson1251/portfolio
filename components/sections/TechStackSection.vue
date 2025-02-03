@@ -3,7 +3,7 @@ import type { ITech } from '~/types'
 
 const { getItems } = useDirectusItems()
 
-const { data: techStack } = useAsyncData(
+const { data: techStack, status } = useAsyncData(
   'techStack',
   async () => {
     return getItems<ITech>({
@@ -27,7 +27,12 @@ const { data: techStack } = useAsyncData(
       <CardTitle>{{ $t('aboutMeSection.stackSection.title') }}</CardTitle>
     </CardHeader>
     <CardContent>
-      <TheMarquee class="py-4 md:py-14" :fade="true" :pause-on-hover="true">
+      <TheMarquee
+        class="py-4 md:py-14"
+        :fade="true"
+        :pause-on-hover="true"
+        v-if="status === 'success'"
+      >
         <div class="flex items-center gap-4">
           <TooltipProvider v-for="item in techStack" :key="item.name">
             <Tooltip>
@@ -42,6 +47,7 @@ const { data: techStack } = useAsyncData(
           </TooltipProvider>
         </div>
       </TheMarquee>
+      <FallbackCard description="general.somethingWrongShort" v-else />
     </CardContent>
   </Card>
 </template>

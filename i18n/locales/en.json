@@ -14,6 +14,11 @@
       "articles": "Articles and thoughts about web development"
     }
   },
+  "general": {
+    "somethingWrong": "Something went wrong",
+    "somethingWrongDescription": "Please try again later. If the problem persists, please contact me. Thank you.",
+    "somethingWrongShort": "Something went wrong. Please try again later."
+  },
   "navbar": {
     "projects": "My projects",
     "experience": "My experience",
@@ -75,6 +80,7 @@
       "nameZA": "Name (Z-A)"
     },
     "noResults": "No projects found",
+    "noResultsDescription": "No projects found for the selected filters. ",
 
     "status": {
       "active": "Active",
@@ -93,8 +99,7 @@
       "work": "Work",
       "education": "Education"
     },
-    "present": "Present",
-    "notFound": "No experience found"
+    "present": "Present"
   },
   "articles": {
     "title": "My articles",

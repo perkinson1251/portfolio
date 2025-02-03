@@ -23,6 +23,7 @@ const getVariantClasses = computed(() => {
     section: 'text-3xl font-semibold',
     subsection: 'text-2xl',
     title: 'text-3xl font-semibold tracking-tight',
+    small: 'text-xl font-semibold',
   }
 
   return variants[props.size]

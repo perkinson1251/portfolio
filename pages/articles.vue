@@ -66,18 +66,12 @@ definePageMeta({
         </CardFooter>
       </Card>
     </div>
-
-    <div
+    <FallbackCard
       v-else
-      class="flex flex-col items-center justify-center rounded-lg border border-dashed p-12"
-    >
-      <Icon name="ph:article" class="size-12 text-muted-foreground" />
-      <h2 class="mt-4 text-xl font-semibold">
-        {{ $t('articles.empty.title') }}
-      </h2>
-      <p class="mt-2 text-center text-sm text-muted-foreground">
-        {{ $t('articles.empty.description') }}
-      </p>
-    </div>
+      title="articles.empty.title"
+      description="articles.empty.description"
+      icon="ph:article"
+      spacious
+    />
   </main>
 </template>

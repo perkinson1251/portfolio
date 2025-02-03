@@ -15,7 +15,11 @@ const { data: technologies } = useAsyncData('technologies', () =>
   })
 )
 
-const { data: experienceItems, refresh } = useAsyncData('experienceItems', () =>
+const {
+  data: experienceItems,
+  refresh,
+  status,
+} = useAsyncData('experienceItems', () =>
   getItems<ITimelineItem>({
     collection: 'experiences',
     params: {
@@ -54,14 +58,12 @@ watch(locale, () => {
       />
     </client-only>
 
-    <div
-      v-if="!experienceItems || !technologies"
-      class="flex min-h-[200px] flex-col items-center justify-center rounded-lg border border-dashed"
-    >
-      <Icon name="ph:folder-notch-open" class="size-12 text-muted-foreground" />
-      <p class="mt-4 text-sm text-muted-foreground">
-        {{ $t('experience.notFound') }}
-      </p>
-    </div>
+    <FallbackCard
+      v-if="status === 'error'"
+      title="general.somethingWrong"
+      description="general.somethingWrongDescription"
+      icon="ph:folder-notch-open"
+      spacious
+    />
   </main>
 </template>
