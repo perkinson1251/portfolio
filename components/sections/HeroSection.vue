@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import type { DirectusFile } from 'nuxt-directus'
 import type { TStatus } from '~/types'
 
 interface Props {
@@ -6,6 +7,10 @@ interface Props {
 }
 
 defineProps<Props>()
+
+const { getFiles } = useDirectusFiles()
+const { locale } = useI18n()
+const config = useRuntimeConfig()
 
 const scrollToContacts = () => {
   const contactsSection = document.getElementById('contacts')
@@ -16,6 +21,33 @@ const scrollToContacts = () => {
     })
   }
 }
+
+const { data: cv, refresh } = useAsyncData(
+  'files',
+  async () => {
+    return getFiles<DirectusFile>({
+      params: {
+        filter: {
+          title: `cv_${locale.value}`,
+        },
+      },
+    })
+  },
+  {
+    immediate: true,
+  }
+)
+
+const fileUrl = computed(() => {
+  if (cv.value) {
+    return `${config.public.directus.url}/assets/${cv.value[0]!.id}`
+  }
+  return undefined
+})
+
+watch(locale, () => {
+  refresh()
+})
 </script>
 
 <template>
@@ -40,7 +72,16 @@ const scrollToContacts = () => {
       <Button size="lg" @click="scrollToContacts">{{
         $t('heroBlock.buttons.contact')
       }}</Button>
-      <Button class="group" size="lg" variant="outline">
+      <Button
+        class="group"
+        size="lg"
+        variant="outline"
+        as="a"
+        :href="fileUrl"
+        target="_blank"
+        :disabled="!fileUrl"
+        :class="{ 'cursor-not-allowed': !fileUrl }"
+      >
         {{ $t('heroBlock.buttons.resume') }}
         <Icon
           name="ph:arrow-up-right"

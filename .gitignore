@@ -25,4 +25,6 @@ logs
 
 # Build files
 data
+uploads
+backups
 *.sql

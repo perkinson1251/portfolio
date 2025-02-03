@@ -17,7 +17,7 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       directus: {
-        url: process.env.NUXT_PUBLIC_DIRECTUS_URL,
+        url: process.env.NUXT_PUBLIC_DIRECTUS_URL || 'http://localhost:8055',
         autoFetch: true,
         autoRefresh: true,
         fetchUserParams: {
@@ -35,23 +35,6 @@ export default defineNuxtConfig({
       name: 'slide-left',
       mode: 'out-in',
     },
-    // head: {
-    //   meta: [
-    //     {
-    //       'http-equiv': 'Content-Security-Policy',
-    //       content: [
-    //         "default-src 'self'",
-    //         "script-src 'self' 'unsafe-inline' 'unsafe-eval'",
-    //         "style-src 'self' 'unsafe-inline'",
-    //         "img-src 'self' data: https:",
-    //         "font-src 'self' data:",
-    //         "connect-src 'self'",
-    //         "frame-src 'self'",
-    //         "manifest-src 'self'",
-    //       ].join('; '),
-    //     },
-    //   ],
-    // },
   },
   components: [
     {
