@@ -32,6 +32,18 @@ export interface IProject {
   tech: IProjectTech[]
 }
 
+export interface ITransformedProject {
+  id: number
+  github_url: string
+  preview_url: string
+  featured: boolean
+  started_at: string
+  status: 'active' | 'archived'
+  name: string
+  description: string
+  tech: ITech[]
+}
+
 interface IContactTranslations {
   description: string
 }
@@ -82,4 +94,29 @@ export interface Article {
   tags: string[]
   readTime: number
   url: string
+}
+
+export interface DirectusFile {
+  charset?: string | null
+  description?: string | null
+  duration?: number | null
+  embed?: string | null
+  filename_disk?: string | null
+  filename_download: string
+  filesize?: number | null
+  folder?: string | null
+  height?: number | null
+  id: string
+  location?: string | null
+  metadata?: unknown | null
+  modified_by?: string | null
+  modified_on: string
+  storage: string
+  tags?: unknown | null
+  title?: string | null
+  type?: string | null
+  uploaded_by?: string | null
+  uploaded_on: string
+  width?: number | null
+  [key: string]: any
 }

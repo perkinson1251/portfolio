@@ -14,17 +14,17 @@ export default defineNuxtConfig({
     '@nuxtjs/i18n',
     'nuxt-directus',
   ],
-  runtimeConfig: {
-    public: {
-      directus: {
-        url: process.env.NUXT_PUBLIC_DIRECTUS_URL || 'http://localhost:8055',
-        autoFetch: true,
-        autoRefresh: true,
-        fetchUserParams: {
-          credentials: 'include',
-        },
+  nitro: {
+    routeRules: {
+      '/directus/**': {
+        proxy: 'http://directus:8055/**',
       },
     },
+  },
+  directus: {
+    url: process.env.NUXT_PUBLIC_DIRECTUS_URL || 'http://localhost:8055',
+    autoFetch: true,
+    autoRefresh: true,
   },
   app: {
     pageTransition: {
@@ -43,7 +43,7 @@ export default defineNuxtConfig({
     },
   ],
   site: {
-    url: process.env.NUXT_PUBLIC_SITE_URL || 'https://example.com',
+    url: process.env.NUXT_PUBLIC_SITE_URL,
     trailingSlash: false,
     indexable: true,
     env: process.env.NUXT_ENV_MODE,
@@ -68,7 +68,7 @@ export default defineNuxtConfig({
       {
         userAgent: ['*'],
         allow: ['/'],
-        disallow: ['/api', '/admin', '/*.json', '/*.xml'],
+        disallow: ['/api', '/*.json'],
       },
     ],
   },
@@ -82,7 +82,7 @@ export default defineNuxtConfig({
     },
     autoI18n: true,
     sortEntries: true,
-    exclude: ['/api/**', '/admin/**', '/404', '/500'],
+    exclude: ['/api/**', '/404', '/500'],
     discoverImages: true,
     sitemapName: 'sitemap.xml',
   },
@@ -102,7 +102,9 @@ export default defineNuxtConfig({
     reactive: true,
   },
   i18n: {
-    baseUrl: 'https://your-domain.com',
+    langDir: 'locales',
+    defaultLocale: 'ua',
+    baseUrl: process.env.NUXT_PUBLIC_SITE_URL,
     locales: [
       {
         code: 'en',

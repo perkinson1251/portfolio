@@ -1,7 +1,6 @@
-// composables/useProjects.ts
 import type { IProject } from '~/types'
 
-export function useProjects() {
+export const useProjects = () => {
   const searchQuery = ref('')
   const sortBy = ref<'date' | 'name'>('date')
   const sortDirection = ref<'asc' | 'desc'>('desc')

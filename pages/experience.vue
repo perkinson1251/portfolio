@@ -1,47 +1,13 @@
 <script setup lang="ts">
-import type { ITech, ITimelineItem } from '~/types'
-
 definePageMeta({
   title: 'experience',
   description: 'experience',
 })
 
-const { locale } = useI18n()
-const { getItems } = useDirectusItems()
+const { getTechnologies, getExperience } = useDirectusQueries()
 
-const { data: technologies } = useAsyncData('technologies', () =>
-  getItems<ITech>({
-    collection: 'technologies',
-  })
-)
-
-const {
-  data: experienceItems,
-  refresh,
-  status,
-} = useAsyncData('experienceItems', () =>
-  getItems<ITimelineItem>({
-    collection: 'experiences',
-    params: {
-      deep: {
-        translations: {
-          _filter: {
-            languages_key: locale.value,
-          },
-          limit: 1,
-        },
-        tech: {
-          limit: -1,
-        },
-      },
-      fields: ['*', 'translations.*', 'tech.*'],
-    },
-  })
-)
-
-watch(locale, () => {
-  refresh()
-})
+const { data: technologies } = getTechnologies()
+const { data: experienceItems, status } = getExperience()
 </script>
 
 <template>
@@ -50,13 +16,11 @@ watch(locale, () => {
       {{ $t('experience.title') }}
     </TheHeading>
 
-    <client-only>
-      <TheTimeline
-        v-if="experienceItems && technologies"
-        :items="experienceItems"
-        :technologies="technologies"
-      />
-    </client-only>
+    <TheTimeline
+      v-if="experienceItems && technologies"
+      :items="experienceItems"
+      :technologies="technologies"
+    />
 
     <FallbackCard
       v-if="status === 'error'"

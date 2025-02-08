@@ -1,48 +1,14 @@
 <script setup lang="ts">
 import { Input } from '@/components/ui/input'
-import type {
-  IProject,
-  ITech,
-  SortDirection,
-  SortOption,
-  SortType,
-  SortValue,
-} from '~/types'
+import type { SortDirection, SortOption, SortType, SortValue } from '~/types'
 
-const { locale, t } = useI18n()
-const { getItems } = useDirectusItems()
+const { t } = useI18n()
 const { searchQuery, sortBy, sortDirection, filterAndSortProjects } =
   useProjects()
+const { getTechnologies, getProjects } = useDirectusQueries()
 
-const { data: technologies } = useAsyncData('technologies', () =>
-  getItems<ITech>({
-    collection: 'technologies',
-  })
-)
-
-const {
-  data: projects,
-  refresh,
-  status,
-} = useAsyncData('projects', () =>
-  getItems<IProject>({
-    collection: 'projects',
-    params: {
-      deep: {
-        translations: {
-          _filter: {
-            languages_key: locale.value,
-          },
-          limit: 1,
-        },
-        tech: {
-          limit: -1,
-        },
-      },
-      fields: ['*', 'translations.*', 'tech.*'],
-    },
-  })
-)
+const { data: technologies } = getTechnologies()
+const { data: projects, status } = getProjects()
 
 const sortOptions: SortOption[] = [
   { value: 'date-desc', label: t('projects.sort.newest') },
@@ -54,13 +20,12 @@ const sortOptions: SortOption[] = [
 const selectedSort = ref<SortValue>(sortOptions[0].value)
 const sortedProjects = computed(() => filterAndSortProjects(projects.value))
 
-watch([locale, selectedSort], ([_, newValue]) => {
+watch([selectedSort], ([newValue]) => {
   if (newValue) {
     const [type, direction] = newValue.split('-') as [SortType, SortDirection]
     sortBy.value = type
     sortDirection.value = direction
   }
-  refresh()
 })
 
 definePageMeta({

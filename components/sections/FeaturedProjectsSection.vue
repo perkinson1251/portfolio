@@ -1,45 +1,8 @@
 <script lang="ts" setup>
-import type { IProject, ITech } from '~/types'
+const { getTechnologies, getProjects } = useDirectusQueries()
 
-const { locale } = useI18n()
-const { getItems } = useDirectusItems()
-
-const { data: technologies } = useAsyncData('tectnologies', async () => {
-  return getItems<ITech>({
-    collection: 'technologies',
-  })
-})
-
-const {
-  data: featuredProjects,
-  refresh,
-  status,
-} = useAsyncData('projects', async () => {
-  return getItems<IProject>({
-    collection: 'projects',
-    params: {
-      filter: {
-        featured: true,
-      },
-      deep: {
-        translations: {
-          _filter: {
-            languages_key: locale.value,
-          },
-          limit: 1,
-        },
-        tech: {
-          limit: -1,
-        },
-      },
-      fields: ['*', 'translations.*', 'tech.*'],
-    },
-  })
-})
-
-watch(locale, () => {
-  refresh()
-})
+const { data: technologies } = getTechnologies()
+const { data: featuredProjects, status } = getProjects(true)
 </script>
 
 <template>

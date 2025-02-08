@@ -1,24 +1,7 @@
 <script lang="ts" setup>
-import type { ITech } from '~/types'
+const { getStackTechnologies } = useDirectusQueries()
 
-const { getItems } = useDirectusItems()
-
-const { data: techStack, status } = useAsyncData(
-  'techStack',
-  async () => {
-    return getItems<ITech>({
-      collection: 'technologies',
-      params: {
-        filter: {
-          stack: true,
-        },
-      },
-    })
-  },
-  {
-    immediate: true,
-  }
-)
+const { data: techStack, status } = getStackTechnologies()
 </script>
 
 <template>
