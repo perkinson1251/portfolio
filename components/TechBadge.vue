@@ -13,7 +13,6 @@ const props = defineProps<ITech>()
           variant="secondary"
         >
           <Icon :name="props.icon" class="size-3.5" />
-          <span class="hidden sm:inline">{{ props.name }}</span>
         </Badge>
       </TooltipTrigger>
       <TooltipContent>{{ props.name }}</TooltipContent>

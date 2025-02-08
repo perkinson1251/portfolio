@@ -10,14 +10,14 @@ const { getTechnologies, getProjects } = useDirectusQueries()
 const { data: technologies } = getTechnologies()
 const { data: projects, status } = getProjects()
 
-const sortOptions: SortOption[] = [
+const sortOptions = computed<SortOption[]>(() => [
   { value: 'date-desc', label: t('projects.sort.newest') },
   { value: 'date-asc', label: t('projects.sort.oldest') },
   { value: 'name-asc', label: t('projects.sort.nameAZ') },
   { value: 'name-desc', label: t('projects.sort.nameZA') },
-]
+])
 
-const selectedSort = ref<SortValue>(sortOptions[0].value)
+const selectedSort = ref<SortValue>(sortOptions.value[0].value)
 const sortedProjects = computed(() => filterAndSortProjects(projects.value))
 
 watch([selectedSort], ([newValue]) => {

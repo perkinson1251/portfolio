@@ -11,7 +11,7 @@ const { data: techStack, status } = getStackTechnologies()
     </CardHeader>
     <CardContent>
       <TheMarquee
-        class="py-4 md:py-14"
+        class="py-4 md:py-11"
         :fade="true"
         :pause-on-hover="true"
         v-if="status === 'success'"

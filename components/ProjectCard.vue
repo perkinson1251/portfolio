@@ -25,31 +25,28 @@ const projectTechs = computed(
   <Card class="group overflow-hidden transition hover:shadow-lg">
     <CardHeader class="space-y-4">
       <div class="space-y-2">
-        <div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-2">
-          <CardTitle>{{ translation?.name }}</CardTitle>
-          <Badge
-            v-if="project.status === 'active'"
-            variant="secondary"
-            class="text-xs"
-          >
-            {{ $t('projects.status.active') }}
-          </Badge>
-          <Badge
-            v-if="project.status === 'archived'"
-            variant="destructive"
-            class="text-xs"
-          >
-            {{ $t('projects.status.archived') }}
-          </Badge>
-        </div>
+        <div
+          class="flex w-full flex-col gap-4 sm:flex-row sm:items-center sm:justify-between"
+        >
+          <div class="flex flex-col items-center gap-2 sm:flex-row sm:gap-2">
+            <CardTitle>{{ translation?.name }}</CardTitle>
+            <Badge
+              v-if="project.status === 'active'"
+              variant="secondary"
+              class="text-xs"
+            >
+              {{ $t('projects.status.active') }}
+            </Badge>
+            <Badge
+              v-if="project.status === 'archived'"
+              variant="destructive"
+              class="text-xs"
+            >
+              {{ $t('projects.status.archived') }}
+            </Badge>
+          </div>
 
-        <div class="flex items-center justify-between">
-          <CardDescription class="text-xs">
-            {{ $t('projects.created') }}
-            {{ formatDate(project.started_at, locale) }}
-          </CardDescription>
-
-          <div class="flex gap-1">
+          <div class="flex items-center gap-2 self-center sm:self-auto">
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger as-child>
@@ -91,6 +88,13 @@ const projectTechs = computed(
               </Tooltip>
             </TooltipProvider>
           </div>
+        </div>
+
+        <div class="flex items-center justify-between">
+          <CardDescription class="text-xs">
+            {{ $t('projects.created') }}
+            {{ formatDate(project.started_at, locale) }}
+          </CardDescription>
         </div>
       </div>
     </CardHeader>
